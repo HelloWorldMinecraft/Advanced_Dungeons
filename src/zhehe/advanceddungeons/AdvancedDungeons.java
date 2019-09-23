@@ -45,17 +45,34 @@ public class AdvancedDungeons extends JavaPlugin {
 
     public static void logMessage(String message)
     {		
-        try
-        {
-            FileWriter writer = new FileWriter(logfile, true);
-            writer.write(AdvancedDungeons.dateFormat.format(new Date()) + " " + message);
-            writer.write("\n");
-            writer.close();
-        }
-        catch(IOException e)
-        {
-            Bukkit.getLogger().info("Failed to write to log file " + logfile);
-        }
+//        try
+//        {
+//            FileWriter writer = new FileWriter(logfile, true);
+//            writer.write(AdvancedDungeons.dateFormat.format(new Date()) + " " + message);
+//            writer.write("\n");
+//            writer.close();
+//        }
+//        catch(IOException e)
+//        {
+//            Bukkit.getLogger().info("Failed to write to log file " + logfile);
+//        }
+        Bukkit.getScheduler().runTaskAsynchronously(AdvancedDungeons.instance, new Runnable() {
+            @Override
+            public void run() {
+                try
+                {
+                    FileWriter writer = new FileWriter(logfile, true);
+                    writer.write(AdvancedDungeons.dateFormat.format(new Date()) + " " + message);
+                    writer.write("\n");
+                    writer.close();
+                }
+                catch(IOException e)
+                {
+//                    Bukkit.getLogger().info("Failed to write to log file " + logfile);
+                }
+            }
+        });
+
     }
 
     
@@ -83,6 +100,7 @@ public class AdvancedDungeons extends JavaPlugin {
         Bukkit.getLogger().log(Level.INFO, "                     |___/                      ");
         
         RogueConfig.getBoolean(RogueConfig.DONATURALSPAWN);
+        Dungeon.init = true;
 //        BukkitRunnable run = new BukkitRunnable() {
 //            @Override
 //            public void run() {
@@ -149,6 +167,8 @@ public class AdvancedDungeons extends JavaPlugin {
                         sender.sendMessage(Dungeon.queue.toString());
 //                        sender.sendMessage(Boolean.toString(DungeonGenerator.isSpawn));
                         wc.init();
+                        RogueConfig.reload(true);
+                        Dungeon.settingsResolver.getSettings().doLootRuleOverride();
                         sender.sendMessage("Done");
                         return true;
                     } else {

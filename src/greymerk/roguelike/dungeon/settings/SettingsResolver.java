@@ -8,10 +8,16 @@ import greymerk.roguelike.util.WeightedChoice;
 import greymerk.roguelike.util.WeightedRandomizer;
 import greymerk.roguelike.worldgen.Coord;
 import greymerk.roguelike.worldgen.IWorldEditor;
+import java.util.logging.Level;
+import org.bukkit.Bukkit;
 
 public class SettingsResolver {
 
 	private ISettingsContainer settings;
+        
+        public SettingsContainer getSettings() {
+            return (SettingsContainer) settings;
+        }
 	
 	public SettingsResolver(ISettingsContainer settings) throws Exception{
 		this.settings = settings;
@@ -26,7 +32,7 @@ public class SettingsResolver {
 		
 		// there are no valid dungeons for this location
 		if(builtin == null && custom == null) return null;
-		
+                
 		DungeonSettings exclusive = (custom != null) ? custom : builtin;
 		
 		DungeonSettings complete = applyInclusives(exclusive, editor, rand, pos); 
@@ -90,11 +96,11 @@ public class SettingsResolver {
 	private DungeonSettings getBuiltin(IWorldEditor editor, Random rand, Coord pos) throws Exception{
 		if(!RogueConfig.getBoolean(RogueConfig.SPAWNBUILTIN)) return null;
 		
-		WeightedRandomizer<DungeonSettings> settingsRandomizer = new WeightedRandomizer<DungeonSettings>();
+		WeightedRandomizer<DungeonSettings> settingsRandomizer = new WeightedRandomizer<>();
 
 		for(DungeonSettings setting : settings.getBuiltinSettings()){			
 			if(setting.isValid(editor, pos)){
-				settingsRandomizer.add(new WeightedChoice<DungeonSettings>(setting, setting.criteria.weight));
+				settingsRandomizer.add(new WeightedChoice<>(setting, setting.criteria.weight));
 			}
 		}
 		
@@ -110,6 +116,9 @@ public class SettingsResolver {
 		WeightedRandomizer<DungeonSettings> settingsRandomizer = new WeightedRandomizer<>();
 		
 		for(DungeonSettings setting : settings.getCustomSettings()){
+//                    Bukkit.getLogger().log(Level.SEVERE, "~~~~~~~~~");
+//                    Bukkit.getLogger().log(Level.SEVERE, Boolean.toString(setting.isValid(editor, pos)));
+//                    Bukkit.getLogger().log(Level.SEVERE, Boolean.toString(setting.isExclusive()));
 			if(setting.isValid(editor, pos) && setting.isExclusive()){
 				settingsRandomizer.add(new WeightedChoice<>(setting, setting.criteria.weight));
 			}

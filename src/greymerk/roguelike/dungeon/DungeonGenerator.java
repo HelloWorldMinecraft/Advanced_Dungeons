@@ -36,50 +36,33 @@ try {
 			levels.add(level);
 		}
 
-//		for(DungeonStage stage : DungeonStage.values()){
-//			for(IDungeonTask task : tasks.getTasks(stage)){
-//				task.execute(editor, rand, dungeon, settings);
-//			}
-//		}
-//                List<DelayNode> delay = editor.getDelayList();
-//                List<DelayData> data = editor.getDataList();
-//                editor.resetDataList();
-//                editor.resetDelayList();
-//                Bukkit.getLogger().log(Level.SEVERE, "create");
             BukkitRunnable run = new BukkitRunnable() {
-//                private List<DelayNode> d_delay = delay;
-//                private List<DelayData> d_data = data;
                 DungeonStage[] stages = DungeonStage.values();
                 int index = 0;
                 int div = 0;
-                private final static int STEP = 12;
+                int sub_index = 0;
+//                private final static int STEP = 12;
                 @Override
                 public void run() {
                     if(index < stages.length) {
                         DungeonStage stage = stages[index];
-                        for(IDungeonTask task : tasks.getTasks(stage)){
-                            task.execute(editor, rand, dungeon, settings);
+                        List<IDungeonTask> list = tasks.getTasks(stage);
+                        if(list != null && list.size() > 0) {
+                            IDungeonTask task = list.get(0);
+                            if(task.execute(editor, rand, dungeon, settings, sub_index)) {
+                                sub_index = 0;
+                                index++;
+                                return;
+                            } else {
+                                sub_index++;
+                                return;
+                            }
+                        } else {
+                            index++;
+                            return;
                         }
-                        index++;
                     } else {
                         this.cancel();
-//                        World world = editor.getWorld();
-//                        Bukkit.getLogger().log(Level.SEVERE, "2");
-//                        if(div < d_data.size()) {
-//                            int len = d_data.size() / STEP + 1;
-//                            int end = div + len;
-//                            for(; div < end && div < d_data.size(); div++) {
-//                                DelayData d = d_data.get(div);
-//                                world.getBlockAt(d.pos.getX(), d.pos.getY(), d.pos.getZ()).setBlockData(d.data, d.flag);
-//                            }
-//                        } else {
-//                            int len = d_delay.size();
-//                            for(int i = 0; i < len; i++) {
-//                                DelayNode d = d_delay.get(i);
-//                                world.getBlockAt(d.pos.getX(), d.pos.getY(), d.pos.getZ()).setType(d.material, true);
-//                            }
-//                            this.cancel();
-//                        }
                     }
                 }
             };

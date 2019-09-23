@@ -12,15 +12,17 @@ import greymerk.roguelike.worldgen.IWorldEditor;
 public class DungeonTaskSegments implements IDungeonTask{
 
 	@Override
-	public void execute(IWorldEditor editor, Random rand, IDungeon dungeon, ISettings settings) {
+	public boolean execute(IWorldEditor editor, Random rand, IDungeon dungeon, ISettings settings, int index) {
 		
 		List<IDungeonLevel> levels = dungeon.getLevels();
 		
 		// generate segments
-		for(IDungeonLevel level : levels){
+		IDungeonLevel level = levels.get(index);
+                {
 			for(DungeonTunnel tunnel : level.getLayout().getTunnels()){
 				tunnel.genSegments(editor, rand, level);
 			}
 		}
+                return index == levels.size() - 1;
 	}
 }

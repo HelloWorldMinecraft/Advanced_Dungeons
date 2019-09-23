@@ -50,6 +50,8 @@ public class Dungeon implements IDungeon{
         public static boolean isSpawning = false;
 	public static final int VERTICAL_SPACING = 10;
 	public static final int TOPLEVEL = 50;
+        
+        public static boolean init = false;
 	
 	private static final String SETTINGS_DIRECTORY = configDirName + "/settings";
 	public static SettingsResolver settingsResolver;
@@ -391,6 +393,18 @@ public class Dungeon implements IDungeon{
 	public Coord getPosition(){
 		return new Coord(this.origin);
 	}
+        
+        private Coord backup;
+        
+        @Override
+	public Coord getTaskPosition(){
+            return backup;
+	}
+        
+        @Override
+        public void setTaskPosition(Coord pos) {
+            backup = pos;
+        }
 
 	@Override
 	public List<IDungeonLevel> getLevels(){

@@ -14,12 +14,13 @@ import greymerk.roguelike.worldgen.IWorldEditor;
 public class DungeonTaskRooms implements IDungeonTask{
 
 	@Override
-	public void execute(IWorldEditor editor, Random rand, IDungeon dungeon, ISettings settings) {
+	public boolean execute(IWorldEditor editor, Random rand, IDungeon dungeon, ISettings settings, int index) {
 		
 		List<IDungeonLevel> levels = dungeon.getLevels();
 		
 		// generate rooms
-		for(IDungeonLevel level : levels){
+		IDungeonLevel level = levels.get(index);
+                {
 			ILevelLayout layout = level.getLayout();
 			List<DungeonNode> nodes = layout.getNodes();
 			DungeonNode startRoom = layout.getStart();
@@ -30,6 +31,6 @@ public class DungeonTaskRooms implements IDungeonTask{
 				toGenerate.generate(editor, rand, level.getSettings(), node.getEntrances(), node.getPosition());	
 			}
 		}
-		
+		return index == levels.size() - 1;
 	}
 }

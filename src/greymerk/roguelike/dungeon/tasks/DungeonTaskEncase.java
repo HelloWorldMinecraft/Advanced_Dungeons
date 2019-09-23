@@ -13,15 +13,16 @@ import greymerk.roguelike.worldgen.filter.Filter;
 public class DungeonTaskEncase implements IDungeonTask{
 
 	@Override
-	public void execute(IWorldEditor editor, Random rand, IDungeon dungeon, ISettings settings) {
+	public boolean execute(IWorldEditor editor, Random rand, IDungeon dungeon, ISettings settings, int index) {
 		
 		List<IDungeonLevel> levels = dungeon.getLevels();
 		
 		// encase
 		if(RogueConfig.getBoolean(RogueConfig.ENCASE)){
-			for(IDungeonLevel level : levels){
-				level.filter(editor, rand, Filter.get(Filter.ENCASE));
-			}	
+                    IDungeonLevel level = levels.get(index);
+                    level.filter(editor, rand, Filter.get(Filter.ENCASE));
+                    return levels.size() == index + 1;
 		}
+                return true;
 	}
 }

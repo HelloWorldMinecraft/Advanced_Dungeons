@@ -12,14 +12,16 @@ import greymerk.roguelike.worldgen.IWorldEditor;
 public class DungeonTaskTunnels implements IDungeonTask{
 
 	@Override
-	public void execute(IWorldEditor editor, Random rand, IDungeon dungeon, ISettings settings) {
+	public boolean execute(IWorldEditor editor, Random rand, IDungeon dungeon, ISettings settings, int index) {
 		List<IDungeonLevel> levels = dungeon.getLevels();
 		
 		// generate tunnels
-		for(IDungeonLevel level : levels){
+		IDungeonLevel level = levels.get(index);
+                {
 			for(DungeonTunnel t : level.getLayout().getTunnels()){
 				t.construct(editor, rand, level.getSettings());
 			}
 		}
+                return index == levels.size() - 1;
 	}
 }

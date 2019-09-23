@@ -21,30 +21,40 @@ import greymerk.roguelike.worldgen.IWorldEditor;
 public class DungeonTaskLayout implements IDungeonTask{
 	
 	@Override
-	public void execute(IWorldEditor editor, Random rand, IDungeon dungeon, ISettings settings){
+	public boolean execute(IWorldEditor editor, Random rand, IDungeon dungeon, ISettings settings, int index){
 		List<IDungeonLevel> levels = dungeon.getLevels();
-		Coord start = dungeon.getPosition();
+		
+                if(index == 0) {
+                    Coord start = dungeon.getPosition();
+                    dungeon.setTaskPosition(start);
+                }
 
 		
 		// generate level layouts
-		for(IDungeonLevel level : levels){
+                if(index <= levels.size() - 1) {
+		IDungeonLevel level = levels.get(index);
 			ILevelGenerator generator = LevelGenerator.getGenerator(editor, rand, level.getSettings().getGenerator(), level);
 			
+                        Coord start = dungeon.getTaskPosition();
+                        
 			try{
 				level.generate(generator, start);
 			} catch(Exception e){
-				e.printStackTrace();
+//				e.printStackTrace();
 			}
 			
 			ILevelLayout layout = generator.getLayout();
-			rand = Dungeon.getRandom(editor, start);
+//			rand = Dungeon.getRandom(editor, start);
 			start = new Coord(layout.getEnd().getPosition());
 			start.add(Cardinal.DOWN, Dungeon.VERTICAL_SPACING);
-		}
-		
-		
+                        dungeon.setTaskPosition(start);
+                        
+                        return false;
+                }
+                else {
+                    index = index - levels.size();
+                    IDungeonLevel level = levels.get(index);
 		// assign dungeon rooms
-		for(IDungeonLevel level : levels){
 			ILevelLayout layout = level.getLayout();
 			IDungeonFactory rooms = level.getSettings().getRooms();
 			
@@ -57,6 +67,7 @@ public class DungeonTaskLayout implements IDungeonTask{
 				node.setDungeon(toGenerate);
 				++count;
 			}
+                    return index == levels.size() - 1;
 		}
 	}
 }

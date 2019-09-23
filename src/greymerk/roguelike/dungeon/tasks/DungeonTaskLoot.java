@@ -14,9 +14,10 @@ import greymerk.roguelike.worldgen.IWorldEditor;
 public class DungeonTaskLoot implements IDungeonTask {
 
 	@Override
-	public void execute(IWorldEditor editor, Random rand, IDungeon dungeon, ISettings settings) {
+	public boolean execute(IWorldEditor editor, Random rand, IDungeon dungeon, ISettings settings, int index) {
 		TreasureManager treasure = editor.getTreasure();
 		settings.processLoot(rand, treasure);
 		treasure.addItem(rand, Treasure.STARTER, new WeightedChoice<>(new BookStatistics(editor).get(), 0), 1);
+                return true;
 	}
 }

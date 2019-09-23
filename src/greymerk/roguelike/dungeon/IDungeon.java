@@ -14,6 +14,10 @@ public interface IDungeon {
 	public void spawnInChunk(Random rand, int chunkX, int chunkZ);
 	
 	public Coord getPosition();
+        
+        public Coord getTaskPosition();
+        
+        public void setTaskPosition(Coord pos);
 	
 	public List<IDungeonLevel> getLevels();
 	
