@@ -1,0 +1,36 @@
+doBuiltinSpawn=true
+Must set to true.
+
+doNaturalSpawn=true
+If this plugin will generate dungeons
+
+encase=false
+add a solid shell to the dungeon, preventing holes from surrounding caves
+
+furniture=true
+add bed or workbench into dungeons
+
+generous=true
+Whether helpful features like brewing stands, ender chests, enchanting stations, anvils should generate.
+
+looting=0.085
+A scale of the probability of mob drops. if set to 0 will require looting enchant to get drops.
+
+lowerLimit=60
+Not used
+
+preciousBlocks=true
+Ignore the ore like diamond ore during the generation
+
+random=false
+random the dungeon themes. Otherwise dungeons will based on biome type
+
+rogueSpawners=true
+Use special spawner in dungeons
+
+spawnChance=0.08
+chance
+
+spawnFrequency=10
+not used
+
