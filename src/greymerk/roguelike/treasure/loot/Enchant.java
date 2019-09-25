@@ -8,6 +8,7 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.enchantments.EnchantmentWrapper;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 
 //import net.minecraft.enchantment.Enchantment;
 //import net.minecraft.enchantment.EnchantmentData;
@@ -27,7 +28,9 @@ public enum Enchant {
 	
 	public static Enchantment getEnchant(Enchant type){
 		String name = getName(type);
-		return EnchantmentWrapper.getByKey(NamespacedKey.minecraft(name));
+		Enchantment res = EnchantmentWrapper.getByKey(NamespacedKey.minecraft(name));
+                if(res != null) return res;
+                return Enchantment.VANISHING_CURSE;
 	}
 	
 	public static String getName(Enchant type){
@@ -64,14 +67,16 @@ public enum Enchant {
 	
 	public static int getLevel(Random rand, int level) {
 
-		switch(level){
-		case 4: return 30 + rand.nextInt(10);
-		case 3: return 15 + rand.nextInt(15);
-		case 2: return 5 + rand.nextInt(15);
-		case 1: return 1 + rand.nextInt(10);
-		case 0: return 1 + rand.nextInt(5);
-		default: return 1;
-		}
+//		switch(level){
+//		case 4: return 30 + rand.nextInt(10);
+//		case 3: return 15 + rand.nextInt(15);
+//		case 2: return 5 + rand.nextInt(15);
+//		case 1: return 1 + rand.nextInt(10);
+//		case 0: return 1 + rand.nextInt(5);
+//		default: return 1;
+//		}
+                if(level > 4 || level < 0) return 1;
+                return level;
 	}
 
 	public static boolean canEnchant(Difficulty difficulty, Random rand, int level){
@@ -91,6 +96,21 @@ public enum Enchant {
 	public static ItemStack enchantItem(Random rand, ItemStack item, int enchantLevel) {
 
 		if (item == null ) return null;
+                if(item.getType() != Material.ENCHANTED_BOOK) return item;
+                EnchantmentStorageMeta meta = (EnchantmentStorageMeta)item.getItemMeta();
+                int amount = 1 + rand.nextInt(3);
+                boolean flag = false;
+                while(enchantLevel > 0) {
+                    for(int i = 0; i < amount; i++) {
+                        Enchantment randEnchant = Enchantment.values()[(int) (rand.nextFloat()*Enchantment.values().length)];
+                        flag = flag | meta.addStoredEnchant(randEnchant, enchantLevel, false);
+                    }
+                    if(!flag) enchantLevel--;
+                    else break;
+                }
+                if(!flag) meta.addStoredEnchant(Enchantment.VANISHING_CURSE, enchantLevel, false);
+                item.setItemMeta(meta);
+                
                 // TODO
 //		List<EnchantmentData> enchants = null;
 //		try{

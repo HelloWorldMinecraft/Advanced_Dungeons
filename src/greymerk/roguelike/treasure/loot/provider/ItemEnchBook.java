@@ -26,7 +26,7 @@ public class ItemEnchBook extends ItemBase{
 	
 	@Override
 	public ItemStack getLootItem(Random rand, int level) {
-		ItemStack book = new ItemStack(Material.BOOK);
+		ItemStack book = new ItemStack(Material.ENCHANTED_BOOK);
 		int enchantLevel = this.ench != 0 ? this.ench : Enchant.getLevel(rand, level);
 		return Enchant.enchantItem(rand, book, enchantLevel);
 	}

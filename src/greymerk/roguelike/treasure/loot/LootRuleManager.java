@@ -23,6 +23,10 @@ public class LootRuleManager {
 	public LootRuleManager(){
 		this.rules = new ArrayList<>();
 	}
+        
+        public List<LootRule> getRules() {
+            return rules;
+        }
 	
 	public LootRuleManager(JsonElement e) throws Exception {
 		this.rules = new ArrayList<>();

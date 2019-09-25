@@ -46,7 +46,7 @@ public enum Potion {
                     type = PotionEffectType.getByName(nameString);
                 } catch(Exception ex) {
                     type = PotionEffectType.REGENERATION;
-                    Bukkit.getLogger().log(Level.SEVERE, "###" + nameString);
+//                    Bukkit.getLogger().log(Level.SEVERE, "###" + nameString);
                 }
 		ItemStack item = !data.has("form") ? new ItemStack(Material.POTION)
 				: data.get("form").getAsString().toLowerCase().equals("splash") ? new ItemStack(Material.SPLASH_POTION)
@@ -77,7 +77,8 @@ public enum Potion {
         
         private static ItemStack addPotionToItemStack(ItemStack potion, PotionEffectType data, boolean upgrade, boolean extend) {
             PotionMeta meta = (PotionMeta) potion.getItemMeta();
-            int level = upgrade ? 2 : 1;
+            int level = upgrade ? 1 : 0;
+            if(upgrade) extend = false;
             int time = extend ? 8 * 60 * 20 : 3 * 60 * 20;
             meta.addCustomEffect(new PotionEffect(data, time, level), true);
             potion.setItemMeta(meta);

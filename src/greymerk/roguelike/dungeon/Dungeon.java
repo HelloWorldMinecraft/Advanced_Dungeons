@@ -18,6 +18,7 @@ import com.google.common.io.Files;
 import greymerk.roguelike.config.RogueConfig;
 import greymerk.roguelike.dungeon.settings.ISettings;
 import greymerk.roguelike.dungeon.settings.SettingsContainer;
+import greymerk.roguelike.dungeon.settings.SettingsRandom;
 import greymerk.roguelike.dungeon.settings.SettingsResolver;
 import greymerk.roguelike.dungeon.tasks.DungeonTaskRegistry;
 import greymerk.roguelike.treasure.ITreasureChest;
@@ -27,10 +28,6 @@ import greymerk.roguelike.worldgen.IWorldEditor;
 import greymerk.roguelike.worldgen.shapes.RectSolid;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Set;
 import java.util.logging.Level;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -77,12 +74,12 @@ public class Dungeon implements IDungeon{
         private static int max_len = 8;
         private static double THRESHOLD = 60;
         
-        private static class SyncBuffer {
-            public Set<String> buffer = new HashSet<>();
-            public LinkedList<String> bufferl = new LinkedList<>();
-            public int buffer_len = 512 * 16 * 16;
-        }
-        private final static SyncBuffer buffer = new SyncBuffer();
+//        private static class SyncBuffer {
+//            public Set<String> buffer = new HashSet<>();
+//            public LinkedList<String> bufferl = new LinkedList<>();
+//            public int buffer_len = 512 * 16 * 16;
+//        }
+//        private final static SyncBuffer buffer = new SyncBuffer();
 	
 	static{
 		try{
@@ -135,36 +132,63 @@ public class Dungeon implements IDungeon{
 		this.editor = editor;
 		this.levels = new ArrayList<>();
 	}
-	
-	public void generateNear(Random rand, int x, int z){
-//            Bukkit.getLogger().log(Level.SEVERE, "1");
+        
+	public void forceGenerateNear(Random rand, int x, int z){
 		if(Dungeon.settingsResolver == null) return;
-//		Bukkit.getLogger().log(Level.SEVERE, "1.5");
 		int attempts = 50;
 		
 		for(int i = 0;i < attempts;i++){
-//                    Bukkit.getLogger().log(Level.SEVERE, "1.6");
-			Coord location = getNearbyCoord(rand, x, z, 40, 100);
+			Coord location = new Coord(x, 0 ,z);
 			
 			if(!validLocation(rand, location)) continue;
-//			Bukkit.getLogger().log(Level.SEVERE, "1.65");
 			ISettings setting;
 			
 			try{
-				setting = Dungeon.settingsResolver.getSettings(editor, rand, location);	
-//                                setting = new SettingsRandom(rand); //***
+				setting = Dungeon.settingsResolver.getSettings(editor, rand, location);
 			} catch(Exception e){
                                 StringWriter sw = new StringWriter();
                                 PrintWriter pw = new PrintWriter(sw);
                                 e.printStackTrace(pw);
                                 Bukkit.getLogger().log(Level.SEVERE, sw.toString());
-//				e.printStackTrace();
+				return;
+			}
+                        if(setting == null) setting = new SettingsRandom(rand);
+			 
+                        synchronized(queue) {                            
+                            queue.add(new Node((x-4)/16, (z-4)/16));
+                            if(queue.size() > max_len) queue.remove(0);
+                            count++;
+                        }
+			int size = generate(setting, location);
+
+                        AdvancedDungeons.logMessage("[Command] Place dungeon @" + editor.getWorldName() + " x=" + location.getX() + ", z=" + location.getZ()+",size:"+size);
+			return;
+		}
+	}
+
+        
+	public void generateNear(Random rand, int x, int z){
+		if(Dungeon.settingsResolver == null) return;
+		int attempts = 50;
+		
+		for(int i = 0;i < attempts;i++){
+//			Coord location = getNearbyCoord(rand, x, z, 40, 100);
+                        Coord location = new Coord(x, 0 ,z);
+			
+			if(!validLocation(rand, location)) continue;
+			ISettings setting;
+			
+			try{
+				setting = Dungeon.settingsResolver.getSettings(editor, rand, location);	
+			} catch(Exception e){
+                                StringWriter sw = new StringWriter();
+                                PrintWriter pw = new PrintWriter(sw);
+                                e.printStackTrace(pw);
+                                Bukkit.getLogger().log(Level.SEVERE, sw.toString());
 				return;
 			}
 			 
-//			Bukkit.getLogger().log(Level.SEVERE, "1.75");
 			if(setting == null) return;
-//			Bukkit.getLogger().log(Level.SEVERE, "2");
                         synchronized(queue) {
                             for(Node n : queue) {
                                 int dx = (x-4)/16 - n.x;
@@ -179,9 +203,7 @@ public class Dungeon implements IDungeon{
                         }
 			int size = generate(setting, location);
 
-//                        Bukkit.getLogger().log(Level.SEVERE, location.getX() + "," + location.getY() + "," + location.getZ());
                         AdvancedDungeons.logMessage("Place dungeon @" + editor.getWorldName() + " x=" + location.getX() + ", z=" + location.getZ()+",size:"+size);
-//			Bukkit.getLogger().log(Level.SEVERE, "3");
 			return;
 		}
 	}
@@ -195,15 +217,7 @@ public class Dungeon implements IDungeon{
 	public static boolean canSpawnInChunk(int chunkX, int chunkZ, IWorldEditor editor){
 		
 		if(!RogueConfig.getBoolean(RogueConfig.DONATURALSPAWN)) return false;
-//                if(isSpawning) return false;
-		
-//		String dim = editor.getInfo(new Coord(chunkX * 16, 0, chunkZ * 16)).getDimension();
-//		List<String> wl = new ArrayList<>();
-//		wl.addAll(RogueConfig.getIntList(RogueConfig.DIMENSIONWL));
-//		List<String> bl = new ArrayList<>();
-//		bl.addAll(RogueConfig.getIntList(RogueConfig.DIMENSIONBL));
-//		if(!SpawnCriteria.isValidDimension(dim, wl, bl)) return false;
-		
+                
 		if(!isVillageChunk(editor, chunkX, chunkZ)) return false;
 		
 		double spawnChance = RogueConfig.getDouble(RogueConfig.SPAWNCHANCE);
@@ -226,36 +240,17 @@ public class Dungeon implements IDungeon{
 	public static boolean isVillageChunk(IWorldEditor editor, int chunkX, int chunkZ){
             // TODO
             return true;
-//		int frequency = RogueConfig.getInt(RogueConfig.SPAWNFREQUENCY);
-//		int min = 8 * frequency / 10;
-//		int max = 32 * frequency / 10;
-//		
-//		min = min < 2 ? 2 : min;
-//		max = max < 8 ? 8 : max;
-//		
-//		int tempX = chunkX < 0 ? chunkX - (max - 1) : chunkX;
-//		int tempZ = chunkZ < 0 ? chunkZ - (max - 1) : chunkZ;
-//
-//		int m = tempX / max;
-//		int n = tempZ / max;
-//		
-//		Random r = editor.getSeededRandom(m, n, 10387312);
-//		
-//		m *= max;
-//		n *= max;
-//		
-//		m += r.nextInt(max - min);
-//		n += r.nextInt(max - min);
-//		
-//		return chunkX == m && chunkZ == n;
 	}
 	
         @Override
 	public void spawnInChunk(Random rand, int chunkX, int chunkZ) {
 		if(Dungeon.canSpawnInChunk(chunkX, chunkZ, editor)){
                     
-			int x = chunkX * 16 + 4;
-			int z = chunkZ * 16 + 4;
+			int x = chunkX * 16 + rand.nextInt(12);
+			int z = chunkZ * 16 + rand.nextInt(12);
+//                      int x = chunkX * 16 + 4;
+//			int z = chunkZ * 16 + 4;
+
 //			isSpawning = true;
 			generateNear(rand, x, z);
 //                        isSpawning = false;

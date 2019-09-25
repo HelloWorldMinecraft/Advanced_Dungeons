@@ -82,7 +82,7 @@ public class SegmentTrap extends SegmentBase{
 		cursor.add(Cardinal.UP, 2);
 		Torch.generate(editor, Torch.REDSTONE, Cardinal.UP, cursor);
 		cursor.add(Cardinal.UP);
-		Dispenser.generate(editor, Cardinal.reverse(dir), cursor);
+		Dispenser.generate(editor, dir, cursor);
 		
 		for(int i = 0; i < 5; i++){
 			int amount = rand.nextInt(5) + 1;

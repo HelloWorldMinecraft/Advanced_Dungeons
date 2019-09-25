@@ -1,0 +1,36 @@
+This is an example of coexistence loottable. With `coexistence` enabled, this plugin will append the `custom_loot.json` to the buildin loottable instead of replacing it.
+
+Example:
+This json will add cookie (with a chance of 99.9%) and nether_star (with a chance of 0.1%) into the buildin loottable.
+
+{
+    "name": "coexistence_loot_table",
+	"active": true,
+	"coexistence": true,
+    "loot_rules": [
+        {
+            "level": [
+                0,
+                1,
+                2,
+                3,
+                4
+            ],
+            "loot": [
+                {
+                    "data": {
+                        "name": "minecraft:cookie"
+                    },
+                    "weight": 1000
+                },
+                {
+                    "data": {
+                        "name": "minecraft:nether_star"
+                    },
+                    "weight": 1
+                }            ],
+            "each": true,
+            "quantity": 1
+        }
+    ]
+}

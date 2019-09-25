@@ -74,6 +74,20 @@ public class SettingsContainer implements ISettingsContainer{
         private static final String lootfile = configDirName + File.separator + "custom_loot.json";
         
         public final void doLootRuleOverride() {
+            {
+                String txt = "guide_coexistence_loot.txt";
+                String coexistence_loot = configDirName + File.separator + txt;
+                File file = new File(coexistence_loot);
+                if(!file.exists()) {
+                    try {
+                        InputStream stream = AdvancedDungeons.instance.getResource(txt);
+                        FileUtils.copyInputStreamToFile(stream, file);
+                    } catch (IOException e) {
+                        Bukkit.getLogger().log(Level.SEVERE, "[Advanced Dungeons] Fail to create " + coexistence_loot);
+                    }
+                }
+            }
+            
             File file = new File(lootfile);
             if(!file.exists()) {
                 try {
@@ -96,8 +110,15 @@ public class SettingsContainer implements ISettingsContainer{
                         JsonObject root = (JsonObject)jParser.parse(content);
                         if(root.has("active") && root.get("active").getAsBoolean()) {
                             DungeonSettings setting = parseFile(content);
-                            loot.lootRules = setting.lootRules;
+                            
                             Bukkit.getLogger().log(Level.INFO, "[Advanced Dungeons] Using custom loottable");
+                            if(root.has("coexistence") && root.get("coexistence").getAsBoolean()) {
+                                Bukkit.getLogger().log(Level.INFO, "[Advanced Dungeons] Using Coexistence Mode for loottable");
+                                loot.lootRules.getRules().addAll(setting.lootRules.getRules());
+                            } else {
+                                Bukkit.getLogger().log(Level.INFO, "[Advanced Dungeons] Buildin loottable is disabled");
+                                loot.lootRules = setting.lootRules;
+                            }
                         }
                     } catch (Exception ex) {
                         Bukkit.getLogger().log(Level.SEVERE, "[Advanced Dungeons] Format error in " + lootfile);

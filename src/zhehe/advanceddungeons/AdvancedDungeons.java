@@ -8,15 +8,24 @@ package zhehe.advanceddungeons;
 import greymerk.roguelike.DungeonGenerator;
 import greymerk.roguelike.config.RogueConfig;
 import greymerk.roguelike.dungeon.Dungeon;
+import greymerk.roguelike.dungeon.settings.DungeonSettings;
+import greymerk.roguelike.worldgen.Coord;
+import greymerk.roguelike.worldgen.IWorldEditor;
+import greymerk.roguelike.worldgen.WorldEditor;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 import java.util.logging.Level;
 import org.bukkit.Bukkit;
+import org.bukkit.Chunk;
+import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
 import org.bukkit.command.Command;
@@ -45,17 +54,6 @@ public class AdvancedDungeons extends JavaPlugin {
 
     public static void logMessage(String message)
     {		
-//        try
-//        {
-//            FileWriter writer = new FileWriter(logfile, true);
-//            writer.write(AdvancedDungeons.dateFormat.format(new Date()) + " " + message);
-//            writer.write("\n");
-//            writer.close();
-//        }
-//        catch(IOException e)
-//        {
-//            Bukkit.getLogger().info("Failed to write to log file " + logfile);
-//        }
         Bukkit.getScheduler().runTaskAsynchronously(AdvancedDungeons.instance, new Runnable() {
             @Override
             public void run() {
@@ -72,8 +70,23 @@ public class AdvancedDungeons extends JavaPlugin {
                 }
             }
         });
-
     }
+    
+//    private static Collection<DungeonSettings> settings;
+//    private static List<DungeonSettings> themes;
+//    private static List<String> themes_names;
+    
+//    private static void initAllThemes() {
+//        settings = Dungeon.settingsResolver.getSettings().getBuiltinSettings();
+//        themes = new ArrayList<>();
+//        themes_names = new ArrayList<>();
+//        for(DungeonSettings setting : settings) {
+//            if("greymerk.roguelike.dungeon.settings.builtin".equals(setting.getClass().getPackage().getName())) {
+//                themes.add(setting);
+//                themes_names.add(setting.getClass().getSimpleName());
+//            }
+//        }
+//    }
 
     
     @Override
@@ -101,17 +114,8 @@ public class AdvancedDungeons extends JavaPlugin {
         
         RogueConfig.getBoolean(RogueConfig.DONATURALSPAWN);
         Dungeon.init = true;
-//        BukkitRunnable run = new BukkitRunnable() {
-//            @Override
-//            public void run() {
-//                WorldCreator wc = new WorldCreator("testw");
-//                World world = wc.createWorld();
-//                DungeonGenerator gen = new DungeonGenerator();
-//                gen.forcePopulate(world, new Random(), world.getChunkAt(0, 0));
-//                this.cancel();
-//            }
-//        };
-//        run.runTaskTimer(this, 1, 5);
+        
+//        initAllThemes();
     }
     
     private boolean senderHasOPPermission(final CommandSender sender) {
@@ -141,14 +145,6 @@ public class AdvancedDungeons extends JavaPlugin {
     
     @Override
     public boolean onCommand(final CommandSender sender, final Command command, final String label, final String[] args) {
-//        if (sender instanceof Player) {
-//            final Player player = (Player) sender;
-//            if (!player.hasPermission("advanceddungeons.op")) {
-//                player.sendMessage("You don't have the permission required to use this plugin");
-//                return true;
-//            }
-//        }
-        
         if (command.getName().equalsIgnoreCase("advanceddungeons")) {
 
             switch (args.length) {
@@ -178,17 +174,7 @@ public class AdvancedDungeons extends JavaPlugin {
                 case 2: // /advanceddungeons options worldname
                     String option = args[0];
                     String worldName = args[1];
-                    /*if(option.equals("create")) {
-                        if(!senderHasOPPermission(sender)) return true;
-                        wc.addWorld(worldName);
-                        
-                        WorldCreator wc = new WorldCreator(worldName);
-                        wc.generateStructures(false);
-                        wc.environment(World.Environment.NORMAL);
-                        wc.seed(UUID.randomUUID().toString().hashCode());
-                        
-                        wc.createWorld();
-                    } else*/ if(option.equals("enter")) {
+                    if(option.equals("enter")) {
                         if (!(sender instanceof Player)) {
                             sender.sendMessage("Player only command");
                             return true;
@@ -220,6 +206,34 @@ public class AdvancedDungeons extends JavaPlugin {
                     }
                     break;
             }
+            return true;
+        } else if (command.getName().equalsIgnoreCase("advanceddungeons_place")) {
+            if (!(sender instanceof Player)) {
+                sender.sendMessage("Player only command");
+                return true;
+            }
+            if(!senderHasOPPermission(sender)) return true;
+                        
+            Player player = (Player) sender;
+            World world = player.getWorld();
+            IWorldEditor editor = new WorldEditor(world);
+            Dungeon dungeon = new Dungeon(editor);
+            Location loc = player.getLocation();
+            
+            Random rand = new Random();
+            boolean flag = true;
+            try {
+                if(Dungeon.settingsResolver.getSettings(editor, rand, new Coord(loc.getBlockX(), 0, loc.getBlockZ())) == null) {
+                    flag = false;
+                }
+            } catch(Exception ex) {
+                flag = false;
+            }
+            if(!flag) sender.sendMessage("No valid themes is available at this location, will use random dungeon theme");
+            
+            dungeon.forceGenerateNear(rand, loc.getBlockX(), loc.getBlockZ());
+            sender.sendMessage("Done.");
+            return true;
         }
         return false;
     }
