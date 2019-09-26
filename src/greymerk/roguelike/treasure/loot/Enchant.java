@@ -92,6 +92,12 @@ public enum Enchant {
 		
 		return false;
 	}
+        
+        private final static Enchantment[] BASIC = {Enchantment.VANISHING_CURSE, Enchantment.BINDING_CURSE,
+            Enchantment.DIG_SPEED,
+            Enchantment.KNOCKBACK,
+            Enchantment.DURABILITY,
+        };
 
 	public static ItemStack enchantItem(Random rand, ItemStack item, int enchantLevel) {
 
@@ -108,7 +114,7 @@ public enum Enchant {
                     if(!flag) enchantLevel--;
                     else break;
                 }
-                if(!flag) meta.addStoredEnchant(Enchantment.VANISHING_CURSE, enchantLevel, false);
+                if(!flag) meta.addStoredEnchant(BASIC[rand.nextInt(BASIC.length)], 1, false);
                 item.setItemMeta(meta);
                 
                 // TODO

@@ -35,7 +35,7 @@ public class WorldEditor implements IWorldEditor{
 	private Map<Material, Integer> stats;
 	private TreasureManager chests;
 	private static List<Material> invalid;
-	{
+	static {
             // TODO
 		invalid = new ArrayList<>();
 		invalid.add(Material.OAK_PLANKS);
@@ -89,50 +89,7 @@ public class WorldEditor implements IWorldEditor{
         public void resetDataList() {
             data = new ArrayList<>();
         }
-        
-        private boolean needUpdate(Coord pos) {
-            int x = pos.getX(), y = pos.getY(), z = pos.getZ();
-            Material material;
-            material = world.getBlockAt(x + 1, y, z).getType();
-            if(        material == Material.AIR
-                        || material == Material.IRON_BARS || material == Material.REDSTONE_WIRE
-                        || material == Material.WATER || material == Material.LAVA
-                        || material == Material.OAK_FENCE || material == Material.SPRUCE_FENCE
-                        || material == Material.JUNGLE_FENCE || material == Material.BIRCH_FENCE
-                        || material == Material.DARK_OAK_FENCE || material == Material.ACACIA_FENCE
-                        || material == Material.NETHER_BRICK_FENCE
-                        ) return true;
-            material = world.getBlockAt(x - 1, y, z).getType();
-            if(        material == Material.AIR
-                        || material == Material.IRON_BARS || material == Material.REDSTONE_WIRE
-                        || material == Material.WATER || material == Material.LAVA
-                        || material == Material.OAK_FENCE || material == Material.SPRUCE_FENCE
-                        || material == Material.JUNGLE_FENCE || material == Material.BIRCH_FENCE
-                        || material == Material.DARK_OAK_FENCE || material == Material.ACACIA_FENCE
-                        || material == Material.NETHER_BRICK_FENCE
-                        ) return true;
-            material = world.getBlockAt(x, y, z + 1).getType();
-            if(        material == Material.AIR
-                        || material == Material.IRON_BARS || material == Material.REDSTONE_WIRE
-                        || material == Material.WATER || material == Material.LAVA
-                        || material == Material.OAK_FENCE || material == Material.SPRUCE_FENCE
-                        || material == Material.JUNGLE_FENCE || material == Material.BIRCH_FENCE
-                        || material == Material.DARK_OAK_FENCE || material == Material.ACACIA_FENCE
-                        || material == Material.NETHER_BRICK_FENCE
-                        ) return true;
-            material = world.getBlockAt(x, y, z - 1).getType();
-            if(        material == Material.AIR
-                        || material == Material.IRON_BARS || material == Material.REDSTONE_WIRE
-                        || material == Material.WATER || material == Material.LAVA
-                        || material == Material.OAK_FENCE || material == Material.SPRUCE_FENCE
-                        || material == Material.JUNGLE_FENCE || material == Material.BIRCH_FENCE
-                        || material == Material.DARK_OAK_FENCE || material == Material.ACACIA_FENCE
-                        || material == Material.NETHER_BRICK_FENCE
-                        ) return true;
-            
-            return false;
-        }
-        
+                
         @Override
         public void setBlockDelay(Coord pos, Material material) {
                 try{
@@ -144,11 +101,9 @@ public class WorldEditor implements IWorldEditor{
         
 	
 	private boolean setBlock(Coord pos, MetaBlock block, int flags, boolean fillAir, boolean replaceSolid){
-		
-		MetaBlock currentBlock = getMetaBlock(pos);
-		
+				
                 Material material = block.getBlock();
-                Material mat = currentBlock.getBlock();
+                Material mat = getMaterial(pos);
                                 
 		if(mat == Material.CHEST) return false;
 		if(mat == Material.TRAPPED_CHEST) return false;
@@ -157,7 +112,7 @@ public class WorldEditor implements IWorldEditor{
 //                if(material.isOccluding()) flags = 1;
 		
 		//boolean isAir = world.isAirBlock(pos.getBlockPos());
-		boolean isAir = currentBlock.getBlock() == Material.AIR;
+		boolean isAir = mat == Material.AIR;
 		
 		if(!fillAir && isAir) return false;
 		if(!replaceSolid && !isAir)	return false;
@@ -220,12 +175,7 @@ public class WorldEditor implements IWorldEditor{
 	public long getSeed(){
 		return this.world.getSeed();
 	}
-	
-//	@Override
-//	public Random getSeededRandom(int a, int b, int c){
-//		return world.setRandomSeed(a, b, c);
-//	}
-		
+			
 	@Override
 	public void spiralStairStep(Random rand, Coord origin, IStair stair, IBlockFactory fill){
 		
@@ -257,27 +207,27 @@ public class WorldEditor implements IWorldEditor{
 
 		Coord cursor = new Coord(origin);
 		
-		while(!getMetaBlock(cursor).isOpaqueCube() && cursor.getY() > 1){
+		while(!getMaterial(cursor).isSolid() && cursor.getY() > 1){
 			blocks.set(this, rand, cursor);
 			cursor.add(Cardinal.DOWN);
 		}
 	}
 	
+        @Override
+        public Material getMaterial(Coord pos) {
+            return world.getBlockAt(pos.getX(), pos.getY(), pos.getZ()).getType();
+        }
+        
 	@Override
 	public MetaBlock getMetaBlock(Coord pos){
 		return new MetaBlock(world.getBlockAt(pos.getX(), pos.getY(), pos.getZ()).getBlockData());
 	}
 	
-//	@Override
-//	public TileEntity getTileEntity(Coord pos){
-//		return world.getTileEntity(pos.getBlockPos());
-//	}
-	
 	@Override
 	public boolean validGroundBlock(Coord pos){
 		if(isAirBlock(pos)) return false;
-		MetaBlock block = this.getMetaBlock(pos);
-		return !invalid.contains(block.getMaterial());
+                Material material = getMaterial(pos);
+		return !invalid.contains(material);
 	}
 	
 	@Override
@@ -303,34 +253,13 @@ public class WorldEditor implements IWorldEditor{
 	
 	@Override
 	public boolean canPlace(MetaBlock block, Coord pos, Cardinal dir){
-		if(!this.isAirBlock(pos)) return false;
-                return true;
-//		return block.getBlock().canPlaceBlockOnSide(world, pos.getBlockPos(), Cardinal.facing(dir));
+                return this.isAirBlock(pos);
 	}
 
 	@Override
 	public IPositionInfo getInfo(Coord pos) {
 		return new PositionInfo(this.world, pos);
 	}
-
-//	@Override
-//	public Coord findNearestStructure(VanillaStructure type, Coord pos) {
-//		
-//		ChunkProviderServer chunkProvider = ((WorldServer)world).getChunkProvider();
-//		String structureName = VanillaStructure.getName(type);
-//		
-//		BlockPos structurebp = null;
-//		
-//		try{
-//			structurebp = chunkProvider.getNearestStructurePos(world, structureName, pos.getBlockPos(), false);	
-//		} catch(NullPointerException e){
-//			// happens for some reason if structure type is disabled in Chunk Generator Settings
-//		}
-//		
-//		if(structurebp == null) return null;
-//		
-//		return new Coord(structurebp);		
-//	}
 	
 	@Override
 	public String toString(){

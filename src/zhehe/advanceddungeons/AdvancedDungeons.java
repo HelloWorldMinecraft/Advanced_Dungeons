@@ -47,47 +47,24 @@ public class AdvancedDungeons extends JavaPlugin {
     public static String date = "09/13/2019";
     public static boolean enabled = false;
     public static final String configDirName = "plugins" + File.separator + "advanced_dungeons";
-    private static WorldConfig wc;
+    public static WorldConfig wc;
     private static final String logfile = configDirName + File.separator + "log.txt";
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     public static JavaPlugin instance;
 
     public static void logMessage(String message)
     {		
-        Bukkit.getScheduler().runTaskAsynchronously(AdvancedDungeons.instance, new Runnable() {
-            @Override
-            public void run() {
-                try
-                {
-                    FileWriter writer = new FileWriter(logfile, true);
-                    writer.write(AdvancedDungeons.dateFormat.format(new Date()) + " " + message);
-                    writer.write("\n");
-                    writer.close();
-                }
-                catch(IOException e)
-                {
+        Bukkit.getScheduler().runTaskAsynchronously(AdvancedDungeons.instance, () -> {
+            try (FileWriter writer = new FileWriter(logfile, true)) {
+                writer.write(AdvancedDungeons.dateFormat.format(new Date()) + " " + message);
+                writer.write("\n");
+            }
+            catch(IOException e)
+            {
 //                    Bukkit.getLogger().info("Failed to write to log file " + logfile);
-                }
             }
         });
     }
-    
-//    private static Collection<DungeonSettings> settings;
-//    private static List<DungeonSettings> themes;
-//    private static List<String> themes_names;
-    
-//    private static void initAllThemes() {
-//        settings = Dungeon.settingsResolver.getSettings().getBuiltinSettings();
-//        themes = new ArrayList<>();
-//        themes_names = new ArrayList<>();
-//        for(DungeonSettings setting : settings) {
-//            if("greymerk.roguelike.dungeon.settings.builtin".equals(setting.getClass().getPackage().getName())) {
-//                themes.add(setting);
-//                themes_names.add(setting.getClass().getSimpleName());
-//            }
-//        }
-//    }
-
     
     @Override
     public void onEnable() {

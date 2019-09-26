@@ -45,19 +45,19 @@ public enum RogueConfig {
 	
 	public static Tuple<String, ?> getDefault(RogueConfig option){
 		switch(option){
-		case DONATURALSPAWN: return new Tuple<String, Boolean>(getName(option), true);
-		case SPAWNCHANCE: return new Tuple<String, Double>(getName(option), 0.003);
-		case SPAWNFREQUENCY: return new Tuple<String, Integer>(getName(option), 10);
-		case GENEROUS: return new Tuple<String, Boolean>(getName(option), true);
-		case PRECIOUSBLOCKS: return new Tuple<String, Boolean>(getName(option), true);
-		case LOOTING: return new Tuple<String, Double>(getName(option), 0.085D);
-		case UPPERLIMIT: return new Tuple<String, Integer>(getName(option), 100);
-		case LOWERLIMIT: return new Tuple<String, Integer>(getName(option), 60);
-		case ROGUESPAWNERS: return new Tuple<String, Boolean>(getName(option), true);
-		case ENCASE: return new Tuple<String, Boolean>(getName(option), false);
-		case FURNITURE: return new Tuple<String, Boolean>(getName(option), true);
-		case RANDOM: return new Tuple<String, Boolean>(getName(option), false);
-		case SPAWNBUILTIN: return new Tuple<String, Boolean>(getName(option), true);
+		case DONATURALSPAWN: return new Tuple<>(getName(option), true);
+		case SPAWNCHANCE: return new Tuple<>(getName(option), 0.003);
+		case SPAWNFREQUENCY: return new Tuple<>(getName(option), 10);
+		case GENEROUS: return new Tuple<>(getName(option), true);
+		case PRECIOUSBLOCKS: return new Tuple<>(getName(option), true);
+		case LOOTING: return new Tuple<>(getName(option), 0.085D);
+		case UPPERLIMIT: return new Tuple<>(getName(option), 100);
+		case LOWERLIMIT: return new Tuple<>(getName(option), 60);
+		case ROGUESPAWNERS: return new Tuple<>(getName(option), true);
+		case ENCASE: return new Tuple<>(getName(option), false);
+		case FURNITURE: return new Tuple<>(getName(option), true);
+		case RANDOM: return new Tuple<>(getName(option), false);
+		case SPAWNBUILTIN: return new Tuple<>(getName(option), true);
 		default: return null;
 		}
 	}

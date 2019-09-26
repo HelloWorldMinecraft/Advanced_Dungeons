@@ -443,6 +443,7 @@ public class DungeonBTeam extends DungeonBase {
 		
 	}
 	
+        @Override
 	public int getSize(){
 		return 8;
 	}
@@ -450,8 +451,7 @@ public class DungeonBTeam extends DungeonBase {
 	public boolean validLocation(IWorldEditor editor, Cardinal dir, int x, int y, int z){
 		
 		for(Coord pos : new RectHollow(new Coord(x - 7, y - 2, z - 7), new Coord(x + 7, y + 5, z + 7))){
-			MetaBlock b = editor.getMetaBlock(pos);
-			if(!b.getMaterial().isSolid()) return false;
+			if(!editor.getMaterial(pos).isSolid()) return false;
 		}
 		
 		return true;

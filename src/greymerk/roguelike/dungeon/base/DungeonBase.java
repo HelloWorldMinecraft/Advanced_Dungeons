@@ -25,8 +25,7 @@ public abstract class DungeonBase implements IDungeonRoom, Comparable<DungeonBas
 		Coord end = new Coord(pos.getX() + size, pos.getY() + 5, pos.getZ() + size);
 		
 		for(Coord cursor : new RectHollow(start, end)){
-			MetaBlock b = editor.getMetaBlock(cursor);
-			if(!b.getMaterial().isSolid()) return false;
+			if(!editor.getMaterial(cursor).isSolid()) return false;
 		}
 		
 		return true;

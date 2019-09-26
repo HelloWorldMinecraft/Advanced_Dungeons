@@ -23,7 +23,7 @@ import zhehe.advanceddungeons.util.DelayNode;
 public class DungeonGenerator {
 	
 	public static int generate(IWorldEditor editor, IDungeon dungeon, ISettings settings, IDungeonTaskRegistry tasks){
-try {
+//try {
 		Coord start = dungeon.getPosition();
 		Random rand = Dungeon.getRandom(editor, start);
 		List<IDungeonLevel> levels = dungeon.getLevels();
@@ -68,13 +68,13 @@ try {
             };
             run.runTaskTimer(AdvancedDungeons.instance, 1, 1);
 //            return data.size();
-} catch (Exception ex) {
-    StringWriter sw = new StringWriter();
-    PrintWriter pw = new PrintWriter(sw);
-    ex.printStackTrace(pw);
-    Bukkit.getLogger().log(Level.SEVERE, ex.toString());
-//    return -1;
-}
+//} catch (Exception ex) {
+//    StringWriter sw = new StringWriter();
+//    PrintWriter pw = new PrintWriter(sw);
+//    ex.printStackTrace(pw);
+//    Bukkit.getLogger().log(Level.SEVERE, ex.toString());
+////    return -1;
+//}
     return 0;
 	}
 }

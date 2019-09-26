@@ -25,6 +25,8 @@ public interface IWorldEditor {
         Block getBlock(Coord pos);
 	
 	MetaBlock getMetaBlock(Coord pos);
+        
+        Material getMaterial(Coord pos);
 
 	boolean isAirBlock(Coord pos);
 	

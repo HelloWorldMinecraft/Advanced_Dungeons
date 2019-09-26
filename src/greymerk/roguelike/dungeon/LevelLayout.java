@@ -15,8 +15,8 @@ public class LevelLayout implements ILevelLayout{
 	private DungeonNode end;
 	
 	public LevelLayout(){
-		this.nodes = new ArrayList<DungeonNode>();
-		this.tunnels = new ArrayList<DungeonTunnel>();
+		this.nodes = new ArrayList<>();
+		this.tunnels = new ArrayList<>();
 	}
 	
 	public void setStart(DungeonNode start){
@@ -124,7 +124,7 @@ public class LevelLayout implements ILevelLayout{
 	
 	@Override
 	public List<IBounded> getBoundingBoxes(){
-		List<IBounded> boxes = new ArrayList<IBounded>();
+		List<IBounded> boxes = new ArrayList<>();
 		boxes.addAll(nodes);
 		boxes.addAll(tunnels);
 		return boxes;

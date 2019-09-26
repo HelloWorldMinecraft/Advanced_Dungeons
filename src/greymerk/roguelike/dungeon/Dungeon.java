@@ -22,16 +22,12 @@ import greymerk.roguelike.dungeon.settings.SettingsRandom;
 import greymerk.roguelike.dungeon.settings.SettingsResolver;
 import greymerk.roguelike.dungeon.tasks.DungeonTaskRegistry;
 import greymerk.roguelike.treasure.ITreasureChest;
-import greymerk.roguelike.worldgen.Cardinal;
 import greymerk.roguelike.worldgen.Coord;
 import greymerk.roguelike.worldgen.IWorldEditor;
-import greymerk.roguelike.worldgen.shapes.RectSolid;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.logging.Level;
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
-import org.bukkit.block.Biome;
 //import net.minecraft.block.material.Material;
 //import net.minecraft.world.biome.Biome;
 //import net.minecraftforge.common.BiomeDictionary;
@@ -39,8 +35,6 @@ import org.bukkit.block.Biome;
 import org.bukkit.craftbukkit.libs.org.apache.commons.io.FilenameUtils;
 import zhehe.advanceddungeons.AdvancedDungeons;
 import static zhehe.advanceddungeons.AdvancedDungeons.configDirName;
-import zhehe.advanceddungeons.util.BiomeDictionary;
-import zhehe.advanceddungeons.util.BiomeDictionary.Type;
 
 public class Dungeon implements IDungeon{
         public static int count = 0;
@@ -72,15 +66,8 @@ public class Dungeon implements IDungeon{
         }
         public final static List<Node> queue = new ArrayList<>();
         private static int max_len = 8;
-        private static double THRESHOLD = 60;
-        
-//        private static class SyncBuffer {
-//            public Set<String> buffer = new HashSet<>();
-//            public LinkedList<String> bufferl = new LinkedList<>();
-//            public int buffer_len = 512 * 16 * 16;
-//        }
-//        private final static SyncBuffer buffer = new SyncBuffer();
-	
+        private static double THRESHOLD = 40;
+        	
 	static{
 		try{
 			RogueConfig.reload(false);
@@ -161,7 +148,7 @@ public class Dungeon implements IDungeon{
                         }
 			int size = generate(setting, location);
 
-                        AdvancedDungeons.logMessage("[Command] Place dungeon @" + editor.getWorldName() + " x=" + location.getX() + ", z=" + location.getZ()+",size:"+size);
+                        AdvancedDungeons.logMessage("[Command] Place dungeon @" + editor.getWorldName() + " x=" + location.getX() + ", z=" + location.getZ());
 			return;
 		}
 	}
@@ -203,7 +190,7 @@ public class Dungeon implements IDungeon{
                         }
 			int size = generate(setting, location);
 
-                        AdvancedDungeons.logMessage("Place dungeon @" + editor.getWorldName() + " x=" + location.getX() + ", z=" + location.getZ()+",size:"+size);
+                        AdvancedDungeons.logMessage("Place dungeon @" + editor.getWorldName() + " x=" + location.getX() + ", z=" + location.getZ());
 			return;
 		}
 	}
@@ -275,92 +262,7 @@ public class Dungeon implements IDungeon{
         
         public boolean validLocation(Random rand, Coord column) {
             return true;
-//            int x = column.getX();
-//            int z = column.getZ();
-//            String pos = x + ":" + z;
-//            synchronized(buffer) {
-//                if(buffer.buffer.contains(pos)) return false;
-//                buffer.buffer.add(pos);
-//                buffer.bufferl.addLast(pos);
-//                if(buffer.bufferl.size() > buffer.buffer_len) {
-//                    buffer.buffer.remove(buffer.bufferl.getFirst());
-//                    buffer.bufferl.removeFirst();
-//                }
-//            }
-//            return validLocationWithOutBuffer(rand, column);
         }
-	
-	public boolean validLocationWithOutBuffer(Random rand, Coord column){
-		
-//		Biome biome = editor.getInfo(column).getBiome();
-                Biome biome = editor.getBiome(column);
-//                Bukkit.getLogger().log(Level.SEVERE, biome.toString());
-//                Bukkit.getLogger().log(Level.SEVERE, column.toString());
-		Type[] invalidBiomes = new Type[]{
-				BiomeDictionary.Type.RIVER,
-				BiomeDictionary.Type.BEACH,
-				BiomeDictionary.Type.MUSHROOM,
-				BiomeDictionary.Type.OCEAN
-		};
-//		Bukkit.getLogger().log(Level.SEVERE, "C0");
-		for(Type type : invalidBiomes){
-			if(BiomeDictionary.hasType(biome, type)) return false;
-		}
-		
-//		Coord stronghold = editor.findNearestStructure(VanillaStructure.STRONGHOLD, column);
-//		if(stronghold != null){
-//			double strongholdDistance = column.distance(stronghold);
-//			if(strongholdDistance < 300) return false;
-//		}
-				
-		int upperLimit = RogueConfig.getInt(RogueConfig.UPPERLIMIT);
-		int lowerLimit = RogueConfig.getInt(RogueConfig.LOWERLIMIT);
-                
-//                Bukkit.getLogger().log(Level.SEVERE, "C1");
-		
-		Coord cursor = new Coord(column.getX(), upperLimit, column.getZ());
-		
-		if(!editor.isAirBlock(cursor)){
-			return false;
-		}
-//		Bukkit.getLogger().log(Level.SEVERE, "C2");
-                
-		while(!editor.validGroundBlock(cursor)){
-			cursor.add(Cardinal.DOWN);
-			if(cursor.getY() < lowerLimit) return false;
-			if(editor.getBlock(cursor).getType() == Material.WATER) return false;
-		}
-//                Bukkit.getLogger().log(Level.SEVERE, "C3");
-
-		Coord start;
-		Coord end;
-		start = new Coord(cursor);
-		end = new Coord(cursor);
-		start.add(new Coord(-4, 4, -4));
-		end.add(new Coord(4, 4, 4));
-		
-		for (Coord c : new RectSolid(start, end)){
-			if(editor.validGroundBlock(c)){
-				return false;
-			}
-		}
-//		Bukkit.getLogger().log(Level.SEVERE, "C4");
-		start = new Coord(cursor);
-		end = new Coord(cursor);
-		start.add(new Coord(-4, -3, -4));
-		end.add(new Coord(4, -3, 4));
-		int airCount = 0;
-		for (Coord c : new RectSolid(start, end)){
-			if(!editor.validGroundBlock(c)){
-				airCount++;
-			}
-			if(airCount > 8){
-				return false;
-			}
-		}
-//		Bukkit.getLogger().log(Level.SEVERE, "C5");
-		return true;
-	}
 	
 	public static Coord getNearbyCoord(Random rand, int x, int z, int min, int max){
 		

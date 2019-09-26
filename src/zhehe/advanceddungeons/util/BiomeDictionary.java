@@ -43,7 +43,7 @@ public class BiomeDictionary
     public static final class Type
     {
 
-        private static final Map<String, Type> byName = new HashMap<String, Type>();
+        private static final Map<String, Type> byName = new HashMap<>();
         private static Collection<Type> allTypes = Collections.unmodifiableCollection(byName.values());
 
         /*Temperature-based tags. Specifying neither implies a biome is temperate*/

@@ -26,9 +26,10 @@ public class LevelGeneratorClassic implements ILevelGenerator{
 		this.settings = settings;
 	}	
 		
+        @Override
 	public void generate(Coord start){
 		this.start = start;
-		List<Node> gNodes = new ArrayList<Node>();
+		List<Node> gNodes = new ArrayList<>();
 		Node startNode = new Node(Cardinal.directions[rand.nextInt(Cardinal.directions.length)], start);
 		gNodes.add(startNode);
 		
@@ -156,7 +157,7 @@ public class LevelGeneratorClassic implements ILevelGenerator{
 		private Coord pos;
 		
 		public Node(Cardinal direction, Coord pos){
-			this.tunnelers = new ArrayList<Tunneler>();
+			this.tunnelers = new ArrayList<>();
 			this.direction = direction;
 			this.pos = pos;
 			
@@ -199,7 +200,7 @@ public class LevelGeneratorClassic implements ILevelGenerator{
 		}
 		
 		public Cardinal[] getEntrances(){
-			List<Cardinal> c = new ArrayList<Cardinal>();
+			List<Cardinal> c = new ArrayList<>();
 			c.add(Cardinal.reverse(this.direction));
 			for(Tunneler t : this.tunnelers){
 				c.add(t.dir);
@@ -208,7 +209,7 @@ public class LevelGeneratorClassic implements ILevelGenerator{
 		}
 		
 		public List<DungeonTunnel> createTunnels(IWorldEditor editor){
-			List<DungeonTunnel> tunnels = new ArrayList<DungeonTunnel>();
+			List<DungeonTunnel> tunnels = new ArrayList<>();
 			for(Tunneler t : this.tunnelers){
 				tunnels.add(t.createTunnel());
 			}
@@ -220,7 +221,7 @@ public class LevelGeneratorClassic implements ILevelGenerator{
 		}
 		
 		public void cull(){
-			List<Tunneler> toKeep = new ArrayList<Tunneler>();
+			List<Tunneler> toKeep = new ArrayList<>();
 			for(Tunneler t : this.tunnelers){
 				if(t.done){
 					toKeep.add(t);

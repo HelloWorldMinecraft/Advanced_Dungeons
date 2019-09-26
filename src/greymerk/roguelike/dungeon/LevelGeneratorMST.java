@@ -37,7 +37,7 @@ public class LevelGeneratorMST implements ILevelGenerator{
 		Graph<Coord> layout = mst.getGraph();
 		List<Edge<Coord>> edges = layout.getEdges();
 		List<Coord> vertices = layout.getPoints();
-		List<Edge<Coord>> used = new ArrayList<Edge<Coord>>();
+		List<Edge<Coord>> used = new ArrayList<>();
 		
 		for(Coord c : vertices){
 			for(Edge<Coord> e : edges){
@@ -57,7 +57,7 @@ public class LevelGeneratorMST implements ILevelGenerator{
 		DungeonNode startDungeonNode = null;
 		
 		for(Coord c : vertices){
-			List<Cardinal> entrances = new ArrayList<Cardinal>();
+			List<Cardinal> entrances = new ArrayList<>();
 			for(DungeonTunnel tunnel : this.layout.getTunnels()){
 				Coord[] ends = tunnel.getEnds();
 				if(ends[0].equals(c)){

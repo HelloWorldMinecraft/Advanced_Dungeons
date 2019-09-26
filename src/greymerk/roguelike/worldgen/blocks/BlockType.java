@@ -4,6 +4,7 @@ import greymerk.roguelike.config.RogueConfig;
 import greymerk.roguelike.worldgen.MetaBlock;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.block.data.BlockData;
 import org.bukkit.inventory.ItemStack;
 //import net.minecraft.block.Block;
 //import net.minecraft.block.BlockBone;
@@ -37,6 +38,8 @@ public enum BlockType {
 	TNT, ENCHANTING_TABLE, FENCE_NETHER_BRICK, WEB, PUMPKIN_LIT, VINE,
 	PURPUR_BLOCK, PURPUR_PILLAR, PURPUR_STAIR, PURPUR_DOUBLE_SLAB, PURPUR_SLAB, ENDER_BRICK,
 	MAGMA, RED_NETHERBRICK, NETHER_WART_BLOCK, BONE_BLOCK;
+        
+        private final static BlockData LAMP = Bukkit.createBlockData("minecraft:redstone_lamp[lit=true]");
 	
 	public static MetaBlock get(BlockType type){
 		
@@ -138,7 +141,7 @@ public enum BlockType {
 			return new MetaBlock(Material.CRAFTING_TABLE);
 		case NOTEBLOCK: return new MetaBlock(Material.NOTE_BLOCK);
 		case REDSTONE_LAMP: return new MetaBlock(Material.REDSTONE_LAMP);
-		case REDSTONE_LAMP_LIT: return new MetaBlock(Bukkit.createBlockData("minecraft:redstone_lamp[lit=true]"));
+		case REDSTONE_LAMP_LIT: return new MetaBlock(LAMP.clone());
 		case JUKEBOX: return new MetaBlock(Material.JUKEBOX);
 		case FENCE: return new MetaBlock(Material.OAK_FENCE);
 		case TNT: return new MetaBlock(Material.TNT);

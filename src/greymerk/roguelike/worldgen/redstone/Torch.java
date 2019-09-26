@@ -17,19 +17,23 @@ import org.bukkit.block.data.Directional;
 public enum Torch {
 
 	REDSTONE, WOODEN, REDSTONE_UNLIT;
+        
+        private final static BlockData TORCH = Bukkit.createBlockData(Material.TORCH);
+        private final static BlockData REDSTONE_TORCH = Bukkit.createBlockData(Material.REDSTONE_TORCH);
+        private final static BlockData REDSTONE_TORCH_OFF = Bukkit.createBlockData("minecraft:redstone_torch[lit=false]");
 	
 	public static void generate(IWorldEditor editor, Torch type, Cardinal dir, Coord pos){
 		
 		BlockData name;
 		
 		switch(type){
-		case WOODEN: name = Bukkit.createBlockData(Material.TORCH); break;
-		case REDSTONE: name = Bukkit.createBlockData(Material.REDSTONE_TORCH); break;
-		case REDSTONE_UNLIT: name = Bukkit.createBlockData("minecraft:redstone_torch[lit=false]"); break;
-		default: name = Bukkit.createBlockData(Material.TORCH); break;
+		case WOODEN: name = TORCH; break;
+		case REDSTONE: name = REDSTONE_TORCH; break;
+		case REDSTONE_UNLIT: name = REDSTONE_TORCH_OFF; break;
+		default: name = TORCH; break;
 		}		
 		
-		MetaBlock torch = new MetaBlock(name);
+		MetaBlock torch = new MetaBlock(name.clone());
                 if(dir == Cardinal.UP) {
                     
                 } else if(dir == Cardinal.DOWN){

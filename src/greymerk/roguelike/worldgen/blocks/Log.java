@@ -5,6 +5,7 @@ import greymerk.roguelike.worldgen.MetaBlock;
 import org.bukkit.Axis;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.Orientable;
 //import net.minecraft.block.Block;
 //import net.minecraft.block.BlockLog;
@@ -59,16 +60,23 @@ public class Log {
 		default: return Material.OAK_LOG;
 		}
 	}
-	
+        
+        private final static BlockData OAK_LOG = Bukkit.createBlockData(Material.OAK_LOG);
+        private final static BlockData SPRUCE_LOG = Bukkit.createBlockData(Material.SPRUCE_LOG);
+        private final static BlockData BIRCH_LOG = Bukkit.createBlockData(Material.BIRCH_LOG);
+        private final static BlockData JUNGLE_LOG = Bukkit.createBlockData(Material.JUNGLE_LOG);
+        private final static BlockData ACACIA_LOG = Bukkit.createBlockData(Material.ACACIA_LOG);
+        private final static BlockData DARK_OAK_LOG = Bukkit.createBlockData(Material.DARK_OAK_LOG);
+        
 	public static void setType(MetaBlock log, Wood type){
 		switch(type){
-		case OAK: log.setState(Bukkit.createBlockData(Material.OAK_LOG)); return;
-		case SPRUCE: log.setState(Bukkit.createBlockData(Material.SPRUCE_LOG)); return;
-		case BIRCH: log.setState(Bukkit.createBlockData(Material.BIRCH_LOG)); return;
-		case JUNGLE: log.setState(Bukkit.createBlockData(Material.JUNGLE_LOG)); return;
-		case ACACIA: log.setState(Bukkit.createBlockData(Material.ACACIA_LOG)); return;
-		case DARKOAK: log.setState(Bukkit.createBlockData(Material.DARK_OAK_LOG)); return;
-		default: log.setState(Bukkit.createBlockData(Material.OAK_LOG)); return;
+		case OAK: log.setState(OAK_LOG.clone()); return;
+		case SPRUCE: log.setState(SPRUCE_LOG.clone()); return;
+		case BIRCH: log.setState(BIRCH_LOG.clone()); return;
+		case JUNGLE: log.setState(JUNGLE_LOG.clone()); return;
+		case ACACIA: log.setState(ACACIA_LOG.clone()); return;
+		case DARKOAK: log.setState(DARK_OAK_LOG.clone()); return;
+		default: log.setState(OAK_LOG.clone()); return;
 		}
 	}
 }
