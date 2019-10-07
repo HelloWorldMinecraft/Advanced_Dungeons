@@ -40,7 +40,7 @@ public class TippedArrow {
                 
                 ItemStack arrow = new ItemStack(Material.TIPPED_ARROW, amount);
                 PotionMeta meta = (PotionMeta) arrow.getItemMeta();
-                meta.addCustomEffect(new org.bukkit.potion.PotionEffect(type, 1, 2), true);
+                meta.addCustomEffect(new org.bukkit.potion.PotionEffect(type, 1, 1), true);
                 arrow.setItemMeta(meta);
 //		String id = net.minecraft.potion.PotionType.REGISTRY.getNameForObject(type).toString();
 //		

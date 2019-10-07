@@ -11,6 +11,7 @@ import greymerk.roguelike.treasure.loot.Quality;
 import greymerk.roguelike.util.TextFormat;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
+import zhehe.advanceddungeons.util.I18n;
 //import net.minecraft.init.Items;
 //import net.minecraft.item.ItemStack;
 
@@ -114,13 +115,13 @@ public class ItemSpecialty extends ItemBase {
 			item = new ItemStack(Material.DIAMOND_SHOVEL);
 			item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.EFFICIENCY), 3 + rand.nextInt(3));
 			item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.UNBREAKING), getUnbreakingLevel(quality, rand));
-			Loot.setItemName(item, "Soul Spade");
+			Loot.setItemName(item, I18n.instance.Soul_Spade);
 			return item;
 		} else {
 			item = new ItemStack(Material.IRON_SHOVEL);
 			item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.EFFICIENCY), 1 + rand.nextInt(2));
 			item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.UNBREAKING), getUnbreakingLevel(quality, rand));
-			Loot.setItemName(item, "Grave Spade");
+			Loot.setItemName(item, I18n.instance.Grave_Spade);
 			return item;
 		}
 	}
@@ -132,13 +133,13 @@ public class ItemSpecialty extends ItemBase {
 			item = new ItemStack(Material.DIAMOND_AXE);
 			item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.EFFICIENCY), 3 + rand.nextInt(3));
 			item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.UNBREAKING), getUnbreakingLevel(quality, rand));
-			Loot.setItemName(item, "Crystal Head Axe");
+			Loot.setItemName(item, I18n.instance.Crystal_Head_Axe);
 			return item;
 		} else {
 			item = new ItemStack(Material.IRON_AXE);
 			item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.EFFICIENCY), 1 + rand.nextInt(2));
 			item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.UNBREAKING), getUnbreakingLevel(quality, rand));
-			Loot.setItemName(item, "Woodland Hatchet");
+			Loot.setItemName(item, I18n.instance.Woodland_Hatchet);
 			return item;
 		}
 	}
@@ -153,12 +154,12 @@ public class ItemSpecialty extends ItemBase {
 			item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.UNBREAKING), getUnbreakingLevel(quality, rand));
 			if(rand.nextInt(10) == 0){
 				item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.SILKTOUCH), 1);
-				Loot.setItemName(item, "Crystal Pick of Precision");
+				Loot.setItemName(item, I18n.instance.Crystal_Pick_of_Precision);
 				return item;
 			}
 			if(rand.nextInt(10) == 0){
 				item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.FORTUNE), 2 + rand.nextInt(2));
-				Loot.setItemName(item, "Crystal Pick of Prospecting");
+				Loot.setItemName(item, I18n.instance.Crystal_Pick_of_Prospecting);
 				return item;
 			}
 			
@@ -166,7 +167,7 @@ public class ItemSpecialty extends ItemBase {
 				item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.MENDING), 1);
 			}
 			
-			Loot.setItemName(item, "Crystal Pick");
+			Loot.setItemName(item, I18n.instance.Crystal_Pick);
 			return item;
 		} else {
 			item = new ItemStack(Material.IRON_PICKAXE);
@@ -174,12 +175,12 @@ public class ItemSpecialty extends ItemBase {
 			item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.UNBREAKING), getUnbreakingLevel(quality, rand));
 			if(rand.nextInt(10) == 0){
 				item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.SILKTOUCH), 1);
-				Loot.setItemName(item, "Case Hardened Pick of Precision");
+				Loot.setItemName(item, I18n.instance.Case_Hardened_Pick_of_Precision);
 				return item;
 			}
 			if(rand.nextInt(10) == 0){
 				item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.FORTUNE), 1 + rand.nextInt(3));
-				Loot.setItemName(item, "Case Hardened Pick of Prospecting");
+				Loot.setItemName(item, I18n.instance.Case_Hardened_Pick_of_Prospecting);
 				return item;
 			}
 			
@@ -187,7 +188,7 @@ public class ItemSpecialty extends ItemBase {
 				item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.MENDING), 1);
 			}
 			
-			Loot.setItemName(item, "Case Hardened Pick");
+			Loot.setItemName(item, I18n.instance.Case_Hardened_Pick);
 			return item;
 		}
 		
@@ -203,21 +204,21 @@ public class ItemSpecialty extends ItemBase {
 			if(rand.nextInt(10) == 0){
 				item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.LOOTING), 2 + rand.nextInt(2));
 				item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.UNBREAKING), getUnbreakingLevel(quality, rand));
-				Loot.setItemName(item, "Eldritch Blade of Plundering");
-				Loot.setItemLore(item, "The loot taker", TextFormat.DARKGREEN);
+				Loot.setItemName(item, I18n.instance.Eldritch_Blade_of_Plundering.Name);
+				Loot.setItemLore(item, I18n.instance.Eldritch_Blade_of_Plundering.Lore, TextFormat.DARKGREEN);
 				return item;
 			}
 			if(rand.nextInt(10) == 0){
 				item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.FIREASPECT), 2 + rand.nextInt(2));
 				item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.UNBREAKING), getUnbreakingLevel(quality, rand));
-				Loot.setItemName(item, "Eldritch Blade of the Inferno");
-				Loot.setItemLore(item, "From the fiery depths", TextFormat.DARKGREEN);
+				Loot.setItemName(item, I18n.instance.Eldritch_Blade_of_the_Inferno.Name);
+				Loot.setItemLore(item, I18n.instance.Eldritch_Blade_of_the_Inferno.Lore, TextFormat.DARKGREEN);
 				return item;
 			}
 			item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.UNBREAKING), quality == Quality.DIAMOND ? 3 : 1 + rand.nextInt(2));
 			item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.MENDING), 1);
-			Loot.setItemName(item, "Eldritch Blade");
-			Loot.setItemLore(item, "Rune Etched", TextFormat.DARKGREEN);
+			Loot.setItemName(item, I18n.instance.Eldritch_Blade.Name);
+			Loot.setItemLore(item, I18n.instance.Eldritch_Blade.Lore, TextFormat.DARKGREEN);
 			return item;
 		} else {
 			item = new ItemStack(Material.IRON_SWORD);
@@ -226,8 +227,8 @@ public class ItemSpecialty extends ItemBase {
 			}
 			item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.UNBREAKING), 3);
 			item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.MENDING), 1);
-			Loot.setItemName(item, "Tempered Blade");
-			Loot.setItemLore(item, "Highly Durable", TextFormat.DARKGREEN);
+			Loot.setItemName(item, I18n.instance.Tempered_Blade.Name);
+			Loot.setItemLore(item, I18n.instance.Tempered_Blade.Lore, TextFormat.DARKGREEN);
 			return item;
 		}
 		
@@ -242,14 +243,14 @@ public class ItemSpecialty extends ItemBase {
 		case STONE:
 			item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.POWER), 1 + rand.nextInt(3));
 			item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.UNBREAKING), 1);
-			Loot.setItemName(item, "Yew Longbow");
-			Loot.setItemLore(item, "Superior craftsmanship", TextFormat.DARKGREEN);
+			Loot.setItemName(item, I18n.instance.Yew_Longbow.Name);
+			Loot.setItemLore(item, I18n.instance.Yew_Longbow.Lore, TextFormat.DARKGREEN);
 			return item;
 		case IRON:
 			item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.POWER), 1 + rand.nextInt(3));
 			item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.UNBREAKING), 1 + rand.nextInt(3));
-			Loot.setItemName(item, "Laminated Bow");
-			Loot.setItemLore(item, "Highly polished", TextFormat.DARKGREEN);
+			Loot.setItemName(item, I18n.instance.Laminated_Bow.Name);
+			Loot.setItemLore(item, I18n.instance.Laminated_Bow.Lore, TextFormat.DARKGREEN);
 			return item;
 		case GOLD:
 			item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.POWER), 3 + rand.nextInt(3));
@@ -257,8 +258,8 @@ public class ItemSpecialty extends ItemBase {
 				item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.INFINITY), 1);
 			}
 			item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.UNBREAKING), 1 + rand.nextInt(3));
-			Loot.setItemName(item, "Recurve Bow");
-			Loot.setItemLore(item, "Beautifully crafted", TextFormat.DARKGREEN);
+			Loot.setItemName(item, I18n.instance.Recurve_Bow.Name);
+			Loot.setItemLore(item, I18n.instance.Recurve_Bow.Lore, TextFormat.DARKGREEN);
 			return item;
 		case DIAMOND:
 			item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.POWER), 3 + rand.nextInt(3));
@@ -266,8 +267,8 @@ public class ItemSpecialty extends ItemBase {
 			item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.INFINITY), 1);
 			item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.UNBREAKING), getUnbreakingLevel(quality, rand));
 			item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.MENDING), 1);
-			Loot.setItemName(item, "Eldritch Bow");
-			Loot.setItemLore(item, "Warm to the touch", TextFormat.DARKGREEN);
+			Loot.setItemName(item, I18n.instance.Eldritch_Bow.Name);
+			Loot.setItemLore(item, I18n.instance.Eldritch_Bow.Lore, TextFormat.DARKGREEN);
 			return item;
 		default:
 			return null;
@@ -283,39 +284,39 @@ public class ItemSpecialty extends ItemBase {
 		case WOOD:
 			item = new ItemStack(Material.LEATHER_HELMET);
 			ItemArmour.dyeArmor(item, rand.nextInt(256), rand.nextInt(255), rand.nextInt(255));
-			canonical = "Bonnet";
+			canonical = I18n.instance.Bonnet;
 			break;
 		case STONE:
 			item = new ItemStack(Material.CHAINMAIL_HELMET);
-			canonical = "Coif";
+			canonical = I18n.instance.Coif;
 			break;
 		case IRON:
 		case GOLD:
 			item = new ItemStack(Material.IRON_HELMET);
-			canonical = "Sallet";
+			canonical = I18n.instance.Sallet;
 			break;
 		case DIAMOND:
 			item = new ItemStack(Material.DIAMOND_HELMET);
-			canonical = "Helm";
+			canonical = I18n.instance.Helm;
 			break;
 		default:
 			item = new ItemStack(Material.LEATHER_HELMET);
 		}
 		
 		
-		String suffix = "";
+		String suffix;
 
 		if(rand.nextInt(20) == 0){
 			item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.PROTECTION), getProtectionLevel(quality, rand));
 			item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.RESPIRATION), 3);
 			item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.AQUAAFFINITY), 1);
-			suffix = "of Diving";
+			suffix = I18n.instance.Of_Diving;
 		} else if(rand.nextInt(3) == 0){
 			item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.PROJECTILEPROTECTION), getProtectionLevel(quality, rand));
-			suffix = "of Deflection";
+			suffix = I18n.instance.Of_Deflection;
 		} else {		
 			item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.PROTECTION), getProtectionLevel(quality, rand));
-			suffix = "of Defense";
+			suffix = I18n.instance.Of_Defense;
 		}
 		
 		item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.UNBREAKING), getUnbreakingLevel(quality, rand));
@@ -333,47 +334,47 @@ public class ItemSpecialty extends ItemBase {
 	private static ItemStack getBoots(Random rand, Quality quality){
 		ItemStack item;
 		
-		String canonical = "";
+		String canonical;
 		
 		switch(quality){
 		case WOOD:
 			item = new ItemStack(Material.LEATHER_BOOTS);
 			ItemArmour.dyeArmor(item, rand.nextInt(256), rand.nextInt(255), rand.nextInt(255));
-			canonical = "Shoes";
+			canonical = I18n.instance.Shoes;
 			break;
 		case STONE:
 			item = new ItemStack(Material.CHAINMAIL_BOOTS);
-			canonical = "Greaves";
+			canonical = I18n.instance.Greaves;
 			break;
 		case IRON:
 		case GOLD:
 			item = new ItemStack(Material.IRON_BOOTS);
-			canonical = "Sabatons";
+			canonical = I18n.instance.Sabatons;
 			break;
 		case DIAMOND:
 			item = new ItemStack(Material.DIAMOND_BOOTS);
-			canonical = "Boots";
+			canonical = I18n.instance.Boots;
 			break;
 		default:
 			item = new ItemStack(Material.LEATHER_BOOTS);
-			canonical = "Shoes";
+			canonical = I18n.instance.Shoes;
 		}
 
-		String suffix = "";
+		String suffix;
 		
 		if(rand.nextInt(10) == 0){
 			item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.BLASTPROTECTION), getProtectionLevel(quality, rand));
-			suffix = "of Warding";
+			suffix = I18n.instance.Of_Warding;
 		} else if(rand.nextInt(5) == 0){
 			item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.PROTECTION), getProtectionLevel(quality, rand));
 			item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.FEATHERFALLING), quality == Quality.DIAMOND ? 4 : 1 + rand.nextInt(3));
-			suffix = "of Lightness";
+			suffix = I18n.instance.Of_Lightness;
 		} else if(rand.nextInt(3) == 0){
 			item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.PROJECTILEPROTECTION), getProtectionLevel(quality, rand));
-			suffix = "of Deflection";
+			suffix = I18n.instance.Of_Deflection;
 		} else {
 			item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.PROTECTION), getProtectionLevel(quality, rand));
-			suffix = "of Defense";
+			suffix = I18n.instance.Of_Defense;
 		}
 		
 		item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.UNBREAKING), getUnbreakingLevel(quality, rand));
@@ -397,39 +398,39 @@ public class ItemSpecialty extends ItemBase {
 		case WOOD:
 			item = new ItemStack(Material.LEATHER_LEGGINGS);
 			ItemArmour.dyeArmor(item, rand.nextInt(256), rand.nextInt(255), rand.nextInt(255));
-			canonical = "Pantaloons";
+			canonical = I18n.instance.Pantaloons;
 			break;
 		case STONE:
 			item = new ItemStack(Material.CHAINMAIL_LEGGINGS);
-			canonical = "Chausses";
+			canonical = I18n.instance.Chausses;
 			break;
 		case IRON:
 		case GOLD:
 			item = new ItemStack(Material.IRON_LEGGINGS);
-			canonical = "Leg-plates";
+			canonical = I18n.instance.Leg_plates;
 			break;
 		case DIAMOND:
 			item = new ItemStack(Material.DIAMOND_LEGGINGS);
-			canonical = "Leggings";
+			canonical = I18n.instance.Leggings;
 			break;
 		default:
 			item = new ItemStack(Material.LEATHER_LEGGINGS);
 		}
 
-		String suffix = "";
+		String suffix;
 		
 		if(rand.nextInt(10) == 0){
 			item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.FIREPROTECTION), getProtectionLevel(quality, rand));
-			suffix = "of Warding";
+			suffix = I18n.instance.Of_Warding;
 		} else if(rand.nextInt(10) == 0){
 			item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.BLASTPROTECTION), getProtectionLevel(quality, rand));
-			suffix = "of Integrity";
+			suffix = I18n.instance.Of_Integrity;
 		} else if(rand.nextInt(3) == 0){
 			item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.PROJECTILEPROTECTION), getProtectionLevel(quality, rand));
-			suffix = "of Deflection";
+			suffix = I18n.instance.Of_Deflection;
 		} else {
 			item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.PROTECTION), getProtectionLevel(quality, rand));
-			suffix = "of Defense";
+			suffix = I18n.instance.Of_Defense;
 		}
 		
 		item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.UNBREAKING), getUnbreakingLevel(quality, rand));
@@ -446,46 +447,46 @@ public class ItemSpecialty extends ItemBase {
 	private static ItemStack getChest(Random rand, Quality quality){
 		ItemStack item;
 		
-		String canonical = "";
+		String canonical;
 		
 		switch(quality){
 		case WOOD:
 			item = new ItemStack(Material.LEATHER_CHESTPLATE);
 			ItemArmour.dyeArmor(item, rand.nextInt(256), rand.nextInt(255), rand.nextInt(255));
-			canonical = "Tunic";
+			canonical = I18n.instance.Tunic;
 			break;
 		case STONE:
 			item = new ItemStack(Material.CHAINMAIL_CHESTPLATE);
-			canonical = "Hauberk";
+			canonical = I18n.instance.Hauberk;
 			break;
 		case IRON:
 		case GOLD:
 			item = new ItemStack(Material.IRON_CHESTPLATE);
-			canonical = "Cuirass";
+			canonical = I18n.instance.Cuirass;
 			break;
 		case DIAMOND:
 			item = new ItemStack(Material.DIAMOND_CHESTPLATE);
-			canonical = "Plate";
+			canonical = I18n.instance.Plate;
 			break;
 		default:
 			item = new ItemStack(Material.LEATHER_CHESTPLATE);
-			canonical = "Tunic";
+			canonical = I18n.instance.Tunic;
 		}
 
-		String suffix = "";
+		String suffix;
 		
 		if(rand.nextInt(10) == 0){
 			item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.FIREPROTECTION), getProtectionLevel(quality, rand));
-			suffix = "of Flamewarding";
+			suffix = I18n.instance.Of_Flamewarding;
 		} else if(rand.nextInt(10) == 0){
 			item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.BLASTPROTECTION), getProtectionLevel(quality, rand));
-			suffix = "of Integrity";
+			suffix = I18n.instance.Of_Integrity;
 		} else if(rand.nextInt(3) == 0){
 			item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.PROJECTILEPROTECTION), getProtectionLevel(quality, rand));
-			suffix = "of Deflection";
+			suffix = I18n.instance.Of_Deflection;
 		} else {
 			item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.PROTECTION), getProtectionLevel(quality, rand));
-			suffix = "of Defense";
+			suffix = I18n.instance.Of_Defense;
 		}
 		
 		item.addUnsafeEnchantment(Enchant.getEnchant(Enchant.UNBREAKING), getUnbreakingLevel(quality, rand));
@@ -533,12 +534,12 @@ public class ItemSpecialty extends ItemBase {
 	private static String getArmourPrefix(Quality quality){
 		
 		switch(quality){
-		case WOOD: return "Surplus";
-		case STONE: return "Riveted";
-		case IRON: return "Gothic";
-		case GOLD: return "Jewelled";
-		case DIAMOND: return "Crystal";
-		default: return "Strange";
+		case WOOD: return I18n.instance.armour_prefix.Surplus;
+		case STONE: return I18n.instance.armour_prefix.Riveted;
+		case IRON: return I18n.instance.armour_prefix.Gothic;
+		case GOLD: return I18n.instance.armour_prefix.Jewelled;
+		case DIAMOND: return I18n.instance.armour_prefix.Crystal;
+		default: return I18n.instance.armour_prefix.Strange;
 		}
 	}
 

@@ -1,6 +1,7 @@
 {
     "name": "custom_loot_table",
 	"active": false,
+        "coexistence": false,
     "loot_rules": [
         {
             "level": [

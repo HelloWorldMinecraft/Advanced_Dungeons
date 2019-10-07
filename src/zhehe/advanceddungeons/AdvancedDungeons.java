@@ -8,7 +8,6 @@ package zhehe.advanceddungeons;
 import greymerk.roguelike.DungeonGenerator;
 import greymerk.roguelike.config.RogueConfig;
 import greymerk.roguelike.dungeon.Dungeon;
-import greymerk.roguelike.dungeon.settings.DungeonSettings;
 import greymerk.roguelike.worldgen.Coord;
 import greymerk.roguelike.worldgen.IWorldEditor;
 import greymerk.roguelike.worldgen.WorldEditor;
@@ -16,18 +15,12 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 import java.util.Random;
-import java.util.UUID;
 import java.util.logging.Level;
 import org.bukkit.Bukkit;
-import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.World;
-import org.bukkit.WorldCreator;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -36,15 +29,15 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.world.WorldInitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scheduler.BukkitRunnable;
+import zhehe.advanceddungeons.util.I18n;
 
 /**
  *
  * @author Zhehe
  */
 public class AdvancedDungeons extends JavaPlugin {
-    public static String version = "0.1.0";
-    public static String date = "09/13/2019";
+    public static String version = "0.97";
+    public static String date = "10/07/2019";
     public static boolean enabled = false;
     public static final String configDirName = "plugins" + File.separator + "advanced_dungeons";
     public static WorldConfig wc;
@@ -69,6 +62,7 @@ public class AdvancedDungeons extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
+        I18n.init();
         
         wc = new WorldConfig();
         wc.init();
@@ -137,7 +131,7 @@ public class AdvancedDungeons extends JavaPlugin {
                     if(op1.equals("reload")) {
                         if(!senderHasOPPermission(sender)) return true;
                         sender.sendMessage("Debug INFO:");
-                        sender.sendMessage(Dungeon.queue.toString());
+                        sender.sendMessage(Dungeon.dict.toString());
 //                        sender.sendMessage(Boolean.toString(DungeonGenerator.isSpawn));
                         wc.init();
                         RogueConfig.reload(true);

@@ -64,7 +64,7 @@ public class Dungeon implements IDungeon{
                 return "["+ x + "," + z + "]";
             }
         }
-        public final static List<Node> queue = new ArrayList<>();
+        public final static Map<String, List<Node>> dict = new HashMap<>();
         private static int max_len = 8;
         private static double THRESHOLD = 40;
         	
@@ -141,7 +141,19 @@ public class Dungeon implements IDungeon{
 			}
                         if(setting == null) setting = new SettingsRandom(rand);
 			 
-                        synchronized(queue) {                            
+                        synchronized(dict) {
+                            List<Node> queue = dict.get(editor.getWorldName());
+                            if(queue == null) {
+                                queue = new ArrayList<>();
+                                dict.put(editor.getWorldName(), queue);
+                            }
+                            for(Node n : queue) {
+                                int dx = (x-4)/16 - n.x;
+                                int dz = (z-4)/16 - n.z;
+                                double distance = Math.sqrt(dx*dx+dz*dz);
+                                if(distance < THRESHOLD) return;
+                            }
+                            
                             queue.add(new Node((x-4)/16, (z-4)/16));
                             if(queue.size() > max_len) queue.remove(0);
                             count++;
@@ -176,7 +188,12 @@ public class Dungeon implements IDungeon{
 			}
 			 
 			if(setting == null) return;
-                        synchronized(queue) {
+                        synchronized(dict) {
+                            List<Node> queue = dict.get(editor.getWorldName());
+                            if(queue == null) {
+                                queue = new ArrayList<>();
+                                dict.put(editor.getWorldName(), queue);
+                            }
                             for(Node n : queue) {
                                 int dx = (x-4)/16 - n.x;
                                 int dz = (z-4)/16 - n.z;
@@ -211,13 +228,16 @@ public class Dungeon implements IDungeon{
 		Random rand = new Random(Objects.hash(chunkX, chunkZ, 31));
 		
                 if(rand.nextFloat() < spawnChance) {
-                    synchronized(queue) {
+                    synchronized(dict) {
+                        List<Node> queue = dict.get(editor.getWorldName());
+                        if(queue != null) {
                             for(Node n : queue) {
                                 int dx = chunkX - n.x;
                                 int dz = chunkZ - n.z;
                                 double distance = Math.sqrt(dx*dx+dz*dz);
                                 if(distance < THRESHOLD) return false;
                             }
+                        }
                     }
                     return true;
                 }

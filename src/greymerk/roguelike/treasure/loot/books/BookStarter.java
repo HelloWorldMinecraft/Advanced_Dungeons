@@ -8,7 +8,7 @@ public class BookStarter extends BookBase{
 	public BookStarter(){
 		super("greymerk", "Roguelike Dungeons");
 				
-		this.addPage("Roguelike Dungeons v" + AdvancedDungeons.version + "\n"
+		this.addPage("Advanced Dungeons v" + AdvancedDungeons.version + "\n"
 			+ AdvancedDungeons.date + "\n\n"
 			+ "Credits\n\n"
 			+ "Author: Greymerk\n\n"
