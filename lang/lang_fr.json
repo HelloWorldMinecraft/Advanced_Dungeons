@@ -1,0 +1,75 @@
+{
+  "Eldritch_Blade_of_Plundering": {
+    "Name": "Epée Fantomatique Pilleuse",
+    "Lore": "Le Preneur de Butin"
+  },
+  "Eldritch_Blade_of_the_Inferno": {
+    "Name": "Epée Fantomatique de l'Ender",
+    "Lore": "Des profondeurs ardentes"
+  },
+  "Eldritch_Blade": {
+    "Name": "Epée Fantomatique",
+    "Lore": "Gravée d'une Rune"
+  },
+  "Tempered_Blade": {
+    "Name": "Epée Tranchante",
+    "Lore": "Trés Durable"
+  },
+  "Yew_Longbow": {
+    "Name": "Grand Arc Yew",
+    "Lore": "Créé par le meilleur artisan"
+  },
+  "Laminated_Bow": {
+    "Name": "Arc Laminé",
+    "Lore": "Trés Polis"
+  },
+  "Recurve_Bow": {
+    "Name": "Arc Recourbé",
+    "Lore": "Une vraie oeuvre d'art"
+  },
+  "Eldritch_Bow": {
+    "Name": "Arc Fantomatique",
+    "Lore": "Chaud au Touché"
+  },
+  "armour_prefix": {
+    "Surplus": "Surplus",
+    "Riveted": "Rivé",
+    "Gothic": "Gothique",
+    "Jewelled": "Certi",
+    "Crystal": "Cristal",
+    "Strange": "Etrange"
+  },
+  "Soul_Spade": "Pelle de l'Âme",
+  "Grave_Spade": "Pelle du Tombeaux",
+  "Crystal_Head_Axe": "Hache Tête de Cristal",
+  "Woodland_Hatchet": "Hachette des Bois",
+  "Crystal_Pick_of_Precision": "Pioche de Cristal de Précision",
+  "Crystal_Pick_of_Prospecting": "Pioche de Cristal du Prospect",
+  "Crystal_Pick": "Pioche en Cristal",
+  "Case_Hardened_Pick_of_Precision": "Pioche Cémentée de Précision",
+  "Case_Hardened_Pick_of_Prospecting": "Pioche Cémentée de Prospection",
+  "Case_Hardened_Pick": "Pioche Cémentée",
+  "Bonnet": "Bonnet",
+  "Coif": "Coiffe",
+  "Sallet": "Sallet",
+  "Helm": "Casque",
+  "Of_Diving": "de Plongeon",
+  "Of_Deflection": "de Déviation",
+  "Of_Defense": "de Défense",
+  "Shoes": "Chaussures",
+  "Greaves": "Jambière",
+  "Sabatons": "Soleret",
+  "Boots": "Bottes",
+  "Of_Warding": "de Protection",
+  "Of_Lightness": "de Légèreté",
+  "Pantaloons": "Pantalon",
+  "Chausses": "Chausses",
+  "Leg_plates": "Jambières",
+  "Leggings": "Legging",
+  "Of_Integrity": "d'intégrité",
+  "Tunic": "Tunique",
+  "Hauberk": "Haubert",
+  "Cuirass": "Cuirasse",
+  "Plate": "Plastron",
+  "Of_Flamewarding": "Flamboyant"
+}
