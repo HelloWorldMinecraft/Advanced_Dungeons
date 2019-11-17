@@ -158,6 +158,9 @@ public class BiomeDictionary {
     }
 
     public static final class Type {
+        //These two should appear at the top
+        private static final Map<String, Type> byName = new HashMap<>();
+        private static Collection<Type> allTypes = Collections.unmodifiableCollection(byName.values());
 
         /*Temperature-based tags. Specifying neither implies a biome is temperate*/
         public static final Type HOT = new Type("HOT");
@@ -200,8 +203,6 @@ public class BiomeDictionary {
         public static final Type WASTELAND = new Type("WASTELAND");
         public static final Type BEACH = new Type("BEACH");
         public static final Type VOID = new Type("VOID");
-        private static final Map<String, Type> byName = new HashMap<>();
-        private static Collection<Type> allTypes = Collections.unmodifiableCollection(byName.values());
         private final String name;
         private final List<Type> subTypes;
         private final Set<Biome> biomes = new HashSet<>();
