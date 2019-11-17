@@ -152,6 +152,8 @@ public class BiomeDictionary {
         addTypes(Biome.ERODED_BADLANDS, HOT, DRY, SPARSE, MOUNTAIN, RARE);
         addTypes(Biome.MODIFIED_WOODED_BADLANDS_PLATEAU, HOT, DRY, SPARSE, HILLS, RARE);
         addTypes(Biome.MODIFIED_BADLANDS_PLATEAU, HOT, DRY, SPARSE, MOUNTAIN, RARE);
+        addTypes(Biome.BAMBOO_JUNGLE, HOT, WET, DENSE, JUNGLE);
+        addTypes(Biome.BAMBOO_JUNGLE_HILLS, HOT, WET, DENSE, JUNGLE, HILLS);
 
     }
 
