@@ -1,53 +1,52 @@
 package greymerk.roguelike.dungeon.settings;
 
-import java.util.List;
-
 import greymerk.roguelike.worldgen.IPositionInfo;
 import org.bukkit.block.Biome;
 import zhehe.advanceddungeons.util.BiomeDictionary;
+
+import java.util.List;
 //import net.minecraft.util.ResourceLocation;
 //import net.minecraft.world.biome.Biome;
 //import net.minecraftforge.common.BiomeDictionary;
 //import net.minecraftforge.common.BiomeDictionary.Type;
 
-public class SpawnContext implements ISpawnContext{
+public class SpawnContext implements ISpawnContext {
 
-	private IPositionInfo info;
-	
-	public SpawnContext(IPositionInfo info){
-		this.info = info;
-	}
-	
-	@Override
-	public boolean biomeHasType(BiomeDictionary.Type type) {
-		return BiomeDictionary.hasType(info.getBiome(), type);
-	}
+    private IPositionInfo info;
 
-	@Override
-	public Biome getBiome() {
-		return info.getBiome();
-	}
+    public SpawnContext(IPositionInfo info) {
+        this.info = info;
+    }
 
-	@Override
-	public boolean includesBiome(List<Biome> biomeNames) {
-		return biomeNames.contains(info.getBiome());
-	}
+    @Override
+    public boolean biomeHasType(BiomeDictionary.Type type) {
+        return BiomeDictionary.hasType(info.getBiome(), type);
+    }
 
-	@Override
-	public boolean includesBiomeType(List<BiomeDictionary.Type> biomeTypes) {
-		
-		for(BiomeDictionary.Type type : biomeTypes){
-			if(biomeHasType(type)) return true;
-		}
-		
-		return false;
-	}
+    @Override
+    public Biome getBiome() {
+        return info.getBiome();
+    }
 
-	@Override
-	public String getDimension() {
-		return this.info.getDimension();
-	}
+    @Override
+    public boolean includesBiome(List<Biome> biomeNames) {
+        return biomeNames.contains(info.getBiome());
+    }
 
-	
-	
+    @Override
+    public boolean includesBiomeType(List<BiomeDictionary.Type> biomeTypes) {
+
+        for (BiomeDictionary.Type type : biomeTypes) {
+            if (biomeHasType(type)) return true;
+        }
+
+        return false;
+    }
+
+    @Override
+    public String getDimension() {
+        return this.info.getDimension();
+    }
+
+
 }

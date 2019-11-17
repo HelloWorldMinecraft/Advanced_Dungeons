@@ -1,13 +1,13 @@
 package greymerk.roguelike.dungeon.tasks;
 
-import java.util.Random;
-
 import greymerk.roguelike.dungeon.IDungeon;
 import greymerk.roguelike.dungeon.settings.ISettings;
 import greymerk.roguelike.worldgen.IWorldEditor;
 
+import java.util.Random;
+
 public interface IDungeonTask {
 
-	boolean execute(IWorldEditor editor, Random rand, IDungeon dungeon, ISettings settings, int index);
-	
+    boolean execute(IWorldEditor editor, Random rand, IDungeon dungeon, ISettings settings, int index);
+
 }

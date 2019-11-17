@@ -10,22 +10,22 @@ import zhehe.advanceddungeons.util.BlockPos;
 
 public class PositionInfo implements IPositionInfo {
 
-	private World world;
-	private Coord pos;
-	
-	public PositionInfo(World world, Coord pos){
-		this.world = world;
-		this.pos = pos;
-	}
-	
-	@Override
-	public String getDimension() {
-		return world.getName();
-	}
+    private World world;
+    private Coord pos;
 
-	@Override
-	public Biome getBiome() {
-                BlockPos loc = pos.getBlockPos();
-		return world.getBiome(loc.getX(), loc.getZ());
-	}
+    public PositionInfo(World world, Coord pos) {
+        this.world = world;
+        this.pos = pos;
+    }
+
+    @Override
+    public String getDimension() {
+        return world.getName();
+    }
+
+    @Override
+    public Biome getBiome() {
+        BlockPos loc = pos.getBlockPos();
+        return world.getBiome(loc.getX(), loc.getZ());
+    }
 }

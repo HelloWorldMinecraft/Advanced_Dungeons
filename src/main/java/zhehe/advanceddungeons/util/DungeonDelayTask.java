@@ -9,17 +9,15 @@ import greymerk.roguelike.dungeon.IDungeon;
 import greymerk.roguelike.dungeon.settings.ISettings;
 import greymerk.roguelike.dungeon.tasks.IDungeonTask;
 import greymerk.roguelike.worldgen.IWorldEditor;
-import java.util.List;
+
 import java.util.Random;
-import org.bukkit.Material;
 
 /**
- *
  * @author Zhehe
  */
 public class DungeonDelayTask implements IDungeonTask {
-	@Override
-	public boolean execute(IWorldEditor editor, Random rand, IDungeon dungeon, ISettings settings, int index) {
-            return true;
-	}
+    @Override
+    public boolean execute(IWorldEditor editor, Random rand, IDungeon dungeon, ISettings settings, int index) {
+        return true;
+    }
 }

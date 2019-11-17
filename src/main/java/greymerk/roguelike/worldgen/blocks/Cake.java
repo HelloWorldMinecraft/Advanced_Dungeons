@@ -5,9 +5,9 @@ import org.bukkit.Material;
 //import net.minecraft.init.Blocks;
 
 public class Cake {
-	
-	public static MetaBlock get(){
-		return new MetaBlock(Material.CAKE);
-	}
-	
+
+    public static MetaBlock get() {
+        return new MetaBlock(Material.CAKE);
+    }
+
 }

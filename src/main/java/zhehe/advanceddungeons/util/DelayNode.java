@@ -9,13 +9,12 @@ import greymerk.roguelike.worldgen.Coord;
 import org.bukkit.Material;
 
 /**
- *
  * @author Zhehe
  */
 public class DelayNode {
     public Coord pos;
     public Material material;
-    
+
     public DelayNode(Coord pos, Material material) {
         this.pos = pos;
         this.material = material;

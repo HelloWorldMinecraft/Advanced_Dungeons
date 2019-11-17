@@ -6,13 +6,14 @@ import org.bukkit.inventory.ItemStack;
 
 public enum Book {
 
-	CREDITS;
-	
-	public static ItemStack get(Book type){
-		switch(type){
-		
-		default: return new BookStarter().get();
-		}
-	}
-	
+    CREDITS;
+
+    public static ItemStack get(Book type) {
+        switch (type) {
+
+            default:
+                return new BookStarter().get();
+        }
+    }
+
 }

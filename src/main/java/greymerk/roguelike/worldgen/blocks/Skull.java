@@ -1,13 +1,13 @@
 package greymerk.roguelike.worldgen.blocks;
 
-import java.util.Random;
-
 import greymerk.roguelike.worldgen.Cardinal;
 import greymerk.roguelike.worldgen.Coord;
-import greymerk.roguelike.worldgen.MetaBlock;
 import greymerk.roguelike.worldgen.IWorldEditor;
+import greymerk.roguelike.worldgen.MetaBlock;
 import org.bukkit.Material;
 import org.bukkit.block.data.Rotatable;
+
+import java.util.Random;
 //import net.minecraft.block.BlockSkull;
 //import net.minecraft.init.Blocks;
 //import net.minecraft.tileentity.TileEntity;
@@ -15,35 +15,35 @@ import org.bukkit.block.data.Rotatable;
 
 public enum Skull {
 
-	SKELETON, WITHER, ZOMBIE, STEVE, CREEPER;
-	
-	public static void set(IWorldEditor editor, Random rand, int x, int y, int z, Cardinal dir, Skull type){
-		Material skull = Material.CREEPER_HEAD;
-                if(null != type) switch (type) {
-                    case SKELETON:
-                        skull = Material.SKELETON_SKULL;
-                        break;
-                    case WITHER:
-                        skull = Material.WITHER_SKELETON_SKULL;
-                        break;
-                    case ZOMBIE:
-                        skull = Material.ZOMBIE_HEAD;
-                        break;
-                    case STEVE:
-                        skull = Material.PLAYER_HEAD;
-                        break;
-                    default:
-                        skull = Material.CREEPER_HEAD;
-                        break;
-                }
-		MetaBlock skullBlock = new MetaBlock(skull);
-                
-                Rotatable state = (Rotatable) skullBlock.getState();
-                state.setRotation(Cardinal.facing(Cardinal.EAST));
-                skullBlock.setState(state);
-                
-                Coord pos = new Coord(x, y, z);
-                skullBlock.set(editor, pos);
+    SKELETON, WITHER, ZOMBIE, STEVE, CREEPER;
+
+    public static void set(IWorldEditor editor, Random rand, int x, int y, int z, Cardinal dir, Skull type) {
+        Material skull = Material.CREEPER_HEAD;
+        if (null != type) switch (type) {
+            case SKELETON:
+                skull = Material.SKELETON_SKULL;
+                break;
+            case WITHER:
+                skull = Material.WITHER_SKELETON_SKULL;
+                break;
+            case ZOMBIE:
+                skull = Material.ZOMBIE_HEAD;
+                break;
+            case STEVE:
+                skull = Material.PLAYER_HEAD;
+                break;
+            default:
+                skull = Material.CREEPER_HEAD;
+                break;
+        }
+        MetaBlock skullBlock = new MetaBlock(skull);
+
+        Rotatable state = (Rotatable) skullBlock.getState();
+        state.setRotation(Cardinal.facing(Cardinal.EAST));
+        skullBlock.setState(state);
+
+        Coord pos = new Coord(x, y, z);
+        skullBlock.set(editor, pos);
 //		
 //		// Makes the skull sit flush against the block below it.
 //		skullBlock.withProperty(BlockSkull.FACING, Cardinal.facing(Cardinal.UP));
@@ -62,16 +62,16 @@ public enum Skull {
 //		
 //		setType(skull, type);
 //		setRotation(rand, skull, dir);
-	}
-	
-	public static void set(IWorldEditor editor, Random rand, Coord cursor, Cardinal dir, Skull type){
-		int x = cursor.getX();
-		int y = cursor.getY();
-		int z = cursor.getZ();
-		
-		set(editor, rand, x, y, z, dir, type);
-	}
-	
+    }
+
+    public static void set(IWorldEditor editor, Random rand, Coord cursor, Cardinal dir, Skull type) {
+        int x = cursor.getX();
+        int y = cursor.getY();
+        int z = cursor.getZ();
+
+        set(editor, rand, x, y, z, dir, type);
+    }
+
 //	public static void setType(TileEntitySkull skull, Skull type){		
 //		skull.setType(getSkullId(type));
 //	}
@@ -91,25 +91,36 @@ public enum Skull {
 //		
 //		
 //	}
-	
-	public static int getSkullId(Skull type){
-		switch(type){
-		case SKELETON: return 0;
-		case WITHER: return 1;
-		case ZOMBIE: return 2;
-		case STEVE: return 3;
-		case CREEPER: return 4;
-		default: return 0;
-		}
-	}
-	
-	public static int getDirectionValue(Cardinal dir){
-		switch(dir){
-		case NORTH: return 0;
-		case EAST: return 4;
-		case SOUTH: return 8;
-		case WEST: return 12;
-		default: return 0;
-		}
-	}	
+
+    public static int getSkullId(Skull type) {
+        switch (type) {
+            case SKELETON:
+                return 0;
+            case WITHER:
+                return 1;
+            case ZOMBIE:
+                return 2;
+            case STEVE:
+                return 3;
+            case CREEPER:
+                return 4;
+            default:
+                return 0;
+        }
+    }
+
+    public static int getDirectionValue(Cardinal dir) {
+        switch (dir) {
+            case NORTH:
+                return 0;
+            case EAST:
+                return 4;
+            case SOUTH:
+                return 8;
+            case WEST:
+                return 12;
+            default:
+                return 0;
+        }
+    }
 }

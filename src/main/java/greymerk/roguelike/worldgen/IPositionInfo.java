@@ -7,8 +7,8 @@ import org.bukkit.block.Biome;
 
 public interface IPositionInfo {
 
-	String getDimension();
-	
-	Biome getBiome();
-	
+    String getDimension();
+
+    Biome getBiome();
+
 }

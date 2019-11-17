@@ -9,14 +9,14 @@ import org.bukkit.inventory.ItemStack;
 
 public interface IEntity {
 
-	void setSlot(EquipmentSlot slot, ItemStack item);
-	
-	void setMobClass(MobType type, boolean clear);
-	
-	void setChild(boolean child);
-	
-	boolean instance(Class<?> type);
-	
-	void setName(String name);
-	
+    void setSlot(EquipmentSlot slot, ItemStack item);
+
+    void setMobClass(MobType type, boolean clear);
+
+    void setChild(boolean child);
+
+    boolean instance(Class<?> type);
+
+    void setName(String name);
+
 }

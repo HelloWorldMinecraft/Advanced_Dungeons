@@ -10,34 +10,41 @@ import org.bukkit.Material;
 //import net.minecraft.init.Blocks;
 
 public class Leaves {
-	
-	public static MetaBlock get(Wood type, boolean decay){
-		
-		Material base = getBlockId(type);
-		
-		MetaBlock leaf = new MetaBlock(base);
-		
+
+    public static MetaBlock get(Wood type, boolean decay) {
+
+        Material base = getBlockId(type);
+
+        MetaBlock leaf = new MetaBlock(base);
+
 //		leaf.withProperty(BlockLeaves.DECAYABLE, decay);
-                org.bukkit.block.data.type.Leaves leaves = (org.bukkit.block.data.type.Leaves) leaf.getState();
-                leaves.setPersistent(!decay);
-                leaf.setState(leaves);
-		
-		return leaf;
-		
-	}
-	
-	public static Material getBlockId(Wood type){
-		switch(type){
-		case OAK: return Material.OAK_LEAVES;
-		case SPRUCE: return Material.SPRUCE_LEAVES;
-		case BIRCH: return Material.BIRCH_LEAVES;
-		case JUNGLE: return Material.JUNGLE_LEAVES;
-		case ACACIA: return Material.ACACIA_LEAVES;
-		case DARKOAK: return Material.DARK_OAK_LEAVES;
-		default: return Material.OAK_LEAVES;
-		}
-	}
-	
+        org.bukkit.block.data.type.Leaves leaves = (org.bukkit.block.data.type.Leaves) leaf.getState();
+        leaves.setPersistent(!decay);
+        leaf.setState(leaves);
+
+        return leaf;
+
+    }
+
+    public static Material getBlockId(Wood type) {
+        switch (type) {
+            case OAK:
+                return Material.OAK_LEAVES;
+            case SPRUCE:
+                return Material.SPRUCE_LEAVES;
+            case BIRCH:
+                return Material.BIRCH_LEAVES;
+            case JUNGLE:
+                return Material.JUNGLE_LEAVES;
+            case ACACIA:
+                return Material.ACACIA_LEAVES;
+            case DARKOAK:
+                return Material.DARK_OAK_LEAVES;
+            default:
+                return Material.OAK_LEAVES;
+        }
+    }
+
 //	private static BlockPlanks.EnumType getType(Wood type){
 //		
 //		switch(type){

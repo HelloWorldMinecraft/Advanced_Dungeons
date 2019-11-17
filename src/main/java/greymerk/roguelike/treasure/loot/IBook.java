@@ -7,6 +7,6 @@ import org.bukkit.inventory.ItemStack;
 
 public interface IBook {
 
-	ItemStack get();
+    ItemStack get();
 
 }

@@ -1,12 +1,12 @@
- package greymerk.roguelike.worldgen.blocks;
-
-import java.util.Random;
+package greymerk.roguelike.worldgen.blocks;
 
 import greymerk.roguelike.worldgen.Coord;
-import greymerk.roguelike.worldgen.MetaBlock;
 import greymerk.roguelike.worldgen.IWorldEditor;
+import greymerk.roguelike.worldgen.MetaBlock;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
+
+import java.util.Random;
 //import net.minecraft.block.BlockFlower;
 //import net.minecraft.block.BlockPlanks;
 //import net.minecraft.block.BlockSapling;
@@ -18,14 +18,14 @@ import org.bukkit.inventory.ItemStack;
 
 public enum FlowerPot {
 
-	DANDELION, POPPY, ORCHID, ALLIUM, BLUET, REDTULIP, ORANGETULIP, WHITETULIP, PINKTULIP, DAISY,
-	REDMUSHROOM, BROWNMUSHROOM, CACTUS, OAK, BIRCH, SPRUCE, JUNGLE, ACACIA, DARKOAK,
-	SHRUB, FERN;
+    DANDELION, POPPY, ORCHID, ALLIUM, BLUET, REDTULIP, ORANGETULIP, WHITETULIP, PINKTULIP, DAISY,
+    REDMUSHROOM, BROWNMUSHROOM, CACTUS, OAK, BIRCH, SPRUCE, JUNGLE, ACACIA, DARKOAK,
+    SHRUB, FERN;
 
-	public static void generate(IWorldEditor editor, Coord pos, FlowerPot type){
-		MetaBlock pot = new MetaBlock(Material.FLOWER_POT);
-		if(!pot.set(editor, pos)) return;
-		
+    public static void generate(IWorldEditor editor, Coord pos, FlowerPot type) {
+        MetaBlock pot = new MetaBlock(Material.FLOWER_POT);
+        if (!pot.set(editor, pos)) return;
+
 //		TileEntity potEntity = editor.getTileEntity(pos);
 //		
 //		if(potEntity == null) return;
@@ -35,15 +35,15 @@ public enum FlowerPot {
 //		
 //		ItemStack flowerItem = getFlowerItem(type);
 //		flower.setItemStack(flowerItem);
-	}
-	
-	public static void generate(IWorldEditor editor, Random rand, Coord pos){
-		FlowerPot choice = FlowerPot.values()[rand.nextInt(FlowerPot.values().length)];
-		generate(editor, pos, choice);
-	}
-	
-	public static ItemStack getFlowerItem(FlowerPot type){
-                return new ItemStack(Material.FLOWER_POT, 1);
+    }
+
+    public static void generate(IWorldEditor editor, Random rand, Coord pos) {
+        FlowerPot choice = FlowerPot.values()[rand.nextInt(FlowerPot.values().length)];
+        generate(editor, pos, choice);
+    }
+
+    public static ItemStack getFlowerItem(FlowerPot type) {
+        return new ItemStack(Material.FLOWER_POT, 1);
 //		switch(type){
 //		case DANDELION: return new ItemStack(Blocks.YELLOW_FLOWER);
 //		case POPPY: return new ItemStack(Blocks.RED_FLOWER, 0);
@@ -68,11 +68,11 @@ public enum FlowerPot {
 //		case FERN: return new ItemStack(Blocks.TALLGRASS, 2);
 //		default: return new ItemStack(Blocks.YELLOW_FLOWER);
 //		}
-	}
-	
-	public static MetaBlock getFlower(FlowerPot type){
-		MetaBlock flower;
-                flower = new MetaBlock(Material.FLOWER_POT);
+    }
+
+    public static MetaBlock getFlower(FlowerPot type) {
+        MetaBlock flower;
+        flower = new MetaBlock(Material.FLOWER_POT);
 //		switch(type){
 //		case DANDELION: flower = new MetaBlock(Blocks.YELLOW_FLOWER); break;
 //		case POPPY: flower = new MetaBlock(Blocks.RED_FLOWER); break;
@@ -114,7 +114,7 @@ public enum FlowerPot {
 //
 //		default: flower = new MetaBlock(Blocks.YELLOW_FLOWER);
 //		}
-		
-		return flower;
-	}
+
+        return flower;
+    }
 }

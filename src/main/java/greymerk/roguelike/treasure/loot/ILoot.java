@@ -5,7 +5,7 @@ import org.bukkit.inventory.ItemStack;
 //import net.minecraft.item.ItemStack;
 
 public interface ILoot {
-	
-	IWeighted<ItemStack> get(Loot type, int level);
-	
+
+    IWeighted<ItemStack> get(Loot type, int level);
+
 }
