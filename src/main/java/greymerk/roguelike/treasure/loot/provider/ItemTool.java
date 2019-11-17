@@ -25,7 +25,7 @@ public class ItemTool extends ItemBase {
 	public ItemTool(JsonObject data, int weight) throws Exception{
 		super(weight);
 		
-		this.enchant = data.has("ench") ? data.get("ench").getAsBoolean() : true;
+		this.enchant = !data.has("ench") || data.get("ench").getAsBoolean();
 		
 		if(!data.has("level")) throw new Exception("Tool Loot requires a level");
 		this.level = data.get("level").getAsInt();

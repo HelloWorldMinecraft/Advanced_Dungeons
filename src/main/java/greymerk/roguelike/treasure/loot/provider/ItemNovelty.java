@@ -54,9 +54,9 @@ public enum ItemNovelty {
 		names.put("grim", ItemNovelty.GRIM);
 		names.put("mmillss", ItemNovelty.MMILLSS);
 		names.put("valandrah", ItemNovelty.VALANDRAH);
-	};
-		
-	public static ItemStack getItemByName(String name){
+	}
+
+    public static ItemStack getItemByName(String name){
 		if(!names.containsKey(name)) return null;
 		return getItem(names.get(name));
 	}

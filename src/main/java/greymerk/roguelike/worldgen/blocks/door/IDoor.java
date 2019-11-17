@@ -6,7 +6,7 @@ import greymerk.roguelike.worldgen.IWorldEditor;
 
 public interface IDoor {
 	
-	public void generate(IWorldEditor editor, Coord pos, Cardinal dir);
+	void generate(IWorldEditor editor, Coord pos, Cardinal dir);
 	
-	public void generate(IWorldEditor editor, Coord pos, Cardinal dir, boolean open);
+	void generate(IWorldEditor editor, Coord pos, Cardinal dir, boolean open);
 }

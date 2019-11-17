@@ -32,6 +32,6 @@ public class ThemeMineShaft extends ThemeBase{
 		MetaStair stair2 = new MetaStair(StairType.OAK);
 		MetaBlock pillar2 = Wood.get(WoodBlock.LOG);
 		
-		this.secondary = new BlockSet(floor, walls2, stair2, pillar2);;
-	}
+		this.secondary = new BlockSet(floor, walls2, stair2, pillar2);
+    }
 }

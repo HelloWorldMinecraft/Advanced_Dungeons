@@ -48,7 +48,7 @@ public class SpawnPotential {
 		}
 		
 		this.name = entry.get("name").getAsString();
-		this.equip = entry.has("equip") ? entry.get("equip").getAsBoolean() : false;
+		this.equip = entry.has("equip") && entry.get("equip").getAsBoolean();
 		
 		if(entry.has("nbt")){
 			String metadata = entry.get("nbt").getAsString();

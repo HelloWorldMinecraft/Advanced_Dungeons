@@ -34,6 +34,6 @@ public class ThemeEniQuartz extends ThemeBase{
 		MetaStair quartzStair = new MetaStair(StairType.QUARTZ);
 		MetaBlock quartzPillar = Quartz.getPillar(Cardinal.UP);
 		
-		this.secondary =  new BlockSet(floor, quartz, quartzStair, quartzPillar);;
-	}
+		this.secondary =  new BlockSet(floor, quartz, quartzStair, quartzPillar);
+    }
 }

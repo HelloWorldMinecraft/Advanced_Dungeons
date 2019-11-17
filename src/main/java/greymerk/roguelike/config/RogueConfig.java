@@ -107,13 +107,13 @@ public enum RogueConfig {
 		if(testing) return (Integer)getDefault(option).getSecond();
 		reload(false);
 		Tuple<String, ?> def = getDefault(option);
-		return instance.GetInteger((String)def.getFirst(), (Integer)def.getSecond());
+		return instance.GetInteger(def.getFirst(), (Integer)def.getSecond());
 	}
 	
 	public static void setInt(RogueConfig option, int value){
 		reload(false);
 		Tuple<String, ?> def = getDefault(option);
-		instance.Set((String)def.getFirst(), value);
+		instance.Set(def.getFirst(), value);
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -121,13 +121,13 @@ public enum RogueConfig {
 		if(testing) return (ArrayList<Integer>)getDefault(option).getSecond();
 		reload(false);
 		Tuple<String, ?> def = getDefault(option);
-		return instance.GetListInteger((String)def.getFirst(), (ArrayList<Integer>)def.getSecond());
+		return instance.GetListInteger(def.getFirst(), (ArrayList<Integer>)def.getSecond());
 	}
 	
 	public static void setIntList(RogueConfig option, List<Integer> value){
 		reload(false);
 		Tuple<String, ?> def = getDefault(option);
-		instance.Set((String)def.getFirst(), value);
+		instance.Set(def.getFirst(), value);
 	}
 	
 	private static void init(){

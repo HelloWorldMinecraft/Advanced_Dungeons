@@ -6,6 +6,6 @@ import org.bukkit.inventory.ItemStack;
 
 public interface ILoot {
 	
-	public IWeighted<ItemStack> get(Loot type, int level);
+	IWeighted<ItemStack> get(Loot type, int level);
 	
 }

@@ -212,9 +212,7 @@ public class SettingsContainer implements ISettingsContainer{
 		if(!settingsByNamespace.containsKey(id.getNamespace())) return false;
 		
 		Map<String, DungeonSettings> settings = settingsByNamespace.get(id.getNamespace());
-		if(!settings.containsKey(id.getName())) return false;
-		
-		return true;
+		return settings.containsKey(id.getName());
 	}
 	
 	@Override

@@ -32,7 +32,7 @@ public interface ConfigurationParser {
 	 *		A configuration key/value pair from
 	 *		\em reader.
 	 */
-	public Configuration Parse (BufferedReader reader) throws Exception;
+    Configuration Parse(BufferedReader reader) throws Exception;
 	
 	
 	/**
@@ -43,7 +43,7 @@ public interface ConfigurationParser {
 	 *	\param [in] config
 	 *		The configuration to serialize.
 	 */
-	public void Write (Writer writer, Configuration config) throws Exception;
+    void Write(Writer writer, Configuration config) throws Exception;
 
 
 }

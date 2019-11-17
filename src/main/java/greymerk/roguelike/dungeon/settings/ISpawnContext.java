@@ -11,14 +11,14 @@ import zhehe.advanceddungeons.util.BiomeDictionary;
 
 public interface ISpawnContext {
 
-	public boolean biomeHasType(BiomeDictionary.Type type);
+	boolean biomeHasType(BiomeDictionary.Type type);
 
-	public Biome getBiome();
+	Biome getBiome();
 
-	public boolean includesBiome(List<Biome> biomes);
+	boolean includesBiome(List<Biome> biomes);
 
-	public boolean includesBiomeType(List<BiomeDictionary.Type> biomeTypes);
+	boolean includesBiomeType(List<BiomeDictionary.Type> biomeTypes);
 	
-	public String getDimension();
+	String getDimension();
 	
 }

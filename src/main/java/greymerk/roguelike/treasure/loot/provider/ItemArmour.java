@@ -29,7 +29,7 @@ public class ItemArmour extends ItemBase {
 	public ItemArmour(JsonObject data, int weight) throws Exception{
 		super(weight);
 		
-		this.enchant = data.has("ench") ? data.get("ench").getAsBoolean() : true;
+		this.enchant = !data.has("ench") || data.get("ench").getAsBoolean();
 		if(!data.has("level")) throw new Exception("Armour requires a level");
 		this.level = data.get("level").getAsInt();
 		
@@ -154,8 +154,8 @@ public class ItemArmour extends ItemBase {
 	
 	public static ItemStack dyeArmor(ItemStack armor, int r, int g, int b){
 		
-		int color = r << 16 | g << 8 | b << 0;;
-        net.minecraft.server.v1_14_R1.ItemStack ca = CraftItemStack.asNMSCopy(armor);
+		int color = r << 16 | g << 8 | b << 0;
+		net.minecraft.server.v1_14_R1.ItemStack ca = CraftItemStack.asNMSCopy(armor);
         NBTTagCompound nbtdata = ca.getTag();
 
         if (nbtdata == null)

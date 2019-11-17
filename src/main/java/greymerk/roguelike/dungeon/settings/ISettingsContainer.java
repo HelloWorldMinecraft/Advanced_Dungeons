@@ -4,14 +4,14 @@ import java.util.Collection;
 
 public interface ISettingsContainer {
 
-	public Collection<DungeonSettings> getByNamespace(String namespace);
+	Collection<DungeonSettings> getByNamespace(String namespace);
 	
-	public Collection<DungeonSettings> getBuiltinSettings();
+	Collection<DungeonSettings> getBuiltinSettings();
 	
-	public Collection<DungeonSettings> getCustomSettings();
+	Collection<DungeonSettings> getCustomSettings();
 	
-	public DungeonSettings get(SettingIdentifier id);
+	DungeonSettings get(SettingIdentifier id);
 	
-	public boolean contains(SettingIdentifier id);
+	boolean contains(SettingIdentifier id);
 	
 }

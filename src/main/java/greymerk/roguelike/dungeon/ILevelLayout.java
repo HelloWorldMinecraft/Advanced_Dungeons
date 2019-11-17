@@ -7,18 +7,18 @@ import greymerk.roguelike.worldgen.IBounded;
 
 public interface ILevelLayout {
 	
-	public List<IBounded> getBoundingBoxes();
+	List<IBounded> getBoundingBoxes();
 	
-	public List<DungeonNode> getNodes();
+	List<DungeonNode> getNodes();
 	
-	public List<DungeonTunnel> getTunnels();
+	List<DungeonTunnel> getTunnels();
 	
-	public DungeonNode getStart();
+	DungeonNode getStart();
 	
-	public DungeonNode getEnd();
+	DungeonNode getEnd();
 	
-	public boolean hasEmptyRooms();
+	boolean hasEmptyRooms();
 	
-	public DungeonNode getBestFit(IDungeonRoom room);
+	DungeonNode getBestFit(IDungeonRoom room);
 	
 }

@@ -27,7 +27,7 @@ public class ItemWeapon extends ItemBase{
 	public ItemWeapon(JsonObject data, int weight) throws Exception{		
 		super(weight);
 		
-		this.enchant = data.has("ench") ? data.get("ench").getAsBoolean() : true;
+		this.enchant = !data.has("ench") || data.get("ench").getAsBoolean();
 
 		if(data.has("quality")){
 			try{

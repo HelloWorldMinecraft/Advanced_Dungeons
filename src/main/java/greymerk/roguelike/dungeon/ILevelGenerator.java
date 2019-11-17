@@ -4,8 +4,8 @@ import greymerk.roguelike.worldgen.Coord;
 
 public interface ILevelGenerator {
 
-	public void generate(Coord start);
+	void generate(Coord start);
 	
-	public ILevelLayout getLayout();
+	ILevelLayout getLayout();
 	
 }

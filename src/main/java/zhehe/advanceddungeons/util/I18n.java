@@ -17,6 +17,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.logging.Level;
 import org.bukkit.Bukkit;
 
@@ -109,7 +110,7 @@ public class I18n {
         String file_path = configDirName + File.separator + configFileName;
         File file = new File(file_path);
         if(file.exists()) {
-            try(BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file_path), "UTF8"))) {
+            try(BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file_path), StandardCharsets.UTF_8))) {
                 StringBuilder sb = new StringBuilder();
                 String line = reader.readLine();
                 while (line != null) {
@@ -133,7 +134,7 @@ public class I18n {
         String json = gson.toJson(instance);
         String file_path = configDirName + File.separator + configFileName;
         File file = new File(file_path);
-        try(OutputStreamWriter oStreamWriter = new OutputStreamWriter(new FileOutputStream(file), "utf-8")) {
+        try(OutputStreamWriter oStreamWriter = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8)) {
             oStreamWriter.append(json);
             oStreamWriter.close();
         } catch (IOException ex) {

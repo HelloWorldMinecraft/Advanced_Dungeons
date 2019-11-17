@@ -9,18 +9,18 @@ import greymerk.roguelike.worldgen.Coord;
 
 public interface IDungeon {
 
-	public int generate(ISettings setting, Coord pos);
+	int generate(ISettings setting, Coord pos);
 	
-	public void spawnInChunk(Random rand, int chunkX, int chunkZ);
+	void spawnInChunk(Random rand, int chunkX, int chunkZ);
 	
-	public Coord getPosition();
+	Coord getPosition();
         
-        public Coord getTaskPosition();
+        Coord getTaskPosition();
         
-        public void setTaskPosition(Coord pos);
+        void setTaskPosition(Coord pos);
 	
-	public List<IDungeonLevel> getLevels();
+	List<IDungeonLevel> getLevels();
 	
-	public List<ITreasureChest> getChests();
+	List<ITreasureChest> getChests();
 	
 }

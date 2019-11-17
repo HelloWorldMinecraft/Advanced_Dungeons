@@ -149,10 +149,8 @@ public class Coord{
 		
 		if(x != other.x) return false;
 		if(y != other.y) return false;
-		if(z != other.z) return false;
-		
-		return true;
-	}
+        return z == other.z;
+    }
 	
 	public BlockPos getBlockPos(){
 		return new BlockPos(this.x, this.y, this.z);

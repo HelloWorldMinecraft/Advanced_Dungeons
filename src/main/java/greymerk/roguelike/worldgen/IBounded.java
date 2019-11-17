@@ -5,14 +5,14 @@ import greymerk.roguelike.worldgen.shapes.Shape;
 
 public interface IBounded {
 	
-	public BoundingBox getBoundingBox();
+	BoundingBox getBoundingBox();
 	
-	public boolean collide(IBounded other);
+	boolean collide(IBounded other);
 
-	public IShape getShape(Shape type);
+	IShape getShape(Shape type);
 	
-	public Coord getStart();
+	Coord getStart();
 	
-	public Coord getEnd();
+	Coord getEnd();
 	
 }

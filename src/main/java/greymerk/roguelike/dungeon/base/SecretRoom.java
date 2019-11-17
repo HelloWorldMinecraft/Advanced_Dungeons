@@ -82,9 +82,7 @@ public class SecretRoom implements ISecretRoom {
 		SecretRoom other = (SecretRoom)o;
 		
 		if(this.type != other.type) return false;
-		
-		if(this.count != other.count) return false;
-		
-		return true;
-	}
+
+        return this.count == other.count;
+    }
 }

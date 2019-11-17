@@ -145,10 +145,8 @@ public class DungeonFactory implements IDungeonFactory {
 		if(!this.base.equals(other.base)) return false;
 		
 		if(!this.singles.equals(other.singles)) return false;
-		
-		if(!this.multiple.equals(other.multiple)) return false;
-		
-		return true;
+
+		return this.multiple.equals(other.multiple);
 	}
 	
 	public static DungeonFactory getRandom(Random rand, int numRooms) {

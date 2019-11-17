@@ -18,7 +18,7 @@ import zhehe.advanceddungeons.util.DelayNode;
 
 public interface IWorldEditor {
     
-        public String getWorldName();
+        String getWorldName();
 
 	boolean setBlock(Coord pos, MetaBlock metaBlock, boolean fillAir, boolean replaceSolid);
         
@@ -60,11 +60,11 @@ public interface IWorldEditor {
         
         void resetDelayList();
         
-        public void setBlockDelay(Coord pos, Material material);
+        void setBlockDelay(Coord pos, Material material);
         
-        public World getWorld();
+        World getWorld();
         
-        public List<DelayData> getDataList();
+        List<DelayData> getDataList();
         
 //        public void setDataDelay(Coord pos, BlockData data);
         

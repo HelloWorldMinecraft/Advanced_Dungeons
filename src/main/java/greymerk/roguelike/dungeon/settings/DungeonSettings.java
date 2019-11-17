@@ -169,7 +169,7 @@ public class DungeonSettings implements ISettings{
 				List<Integer> lvls = this.parseLevels(entry.get("level"));	
 				
 				for(int i : lvls){
-					if(this.levels.keySet().contains(i)){
+					if(this.levels.containsKey(i)){
 						LevelSettings settings = this.levels.get(i);
 						ITheme theme = Theme.create(entry);
 						settings.setTheme(theme);

@@ -7,6 +7,6 @@ import org.bukkit.World;
 
 public interface IMonsterProfile {
 	
-	public void addEquipment(World world, Random rand, int level, IEntity mob);
+	void addEquipment(World world, Random rand, int level, IEntity mob);
 	
 }

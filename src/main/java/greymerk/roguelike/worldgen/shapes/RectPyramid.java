@@ -133,13 +133,9 @@ public class RectPyramid implements IShape {
 			if(!(cursor.getX() < Math.tan(thetaX) * y)){
 				return false;
 			}
-			
-			if(!(cursor.getZ() < Math.tan(thetaZ) * y)){
-				return false;
-			}
-			
-			return true;
-			
+
+			return cursor.getZ() < Math.tan(thetaZ) * y;
+
 		}
 		
 	}

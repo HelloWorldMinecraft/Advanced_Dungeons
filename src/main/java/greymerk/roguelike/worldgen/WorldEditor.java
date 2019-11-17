@@ -47,9 +47,9 @@ public class WorldEditor implements IWorldEditor{
 		invalid.add(Material.OAK_LEAVES);
 		invalid.add(Material.POPPY);
                 invalid.add(Material.DANDELION);
-	};
-        
-        @Override
+	}
+
+    @Override
         public String getWorldName() {
             return world.getName();
         }

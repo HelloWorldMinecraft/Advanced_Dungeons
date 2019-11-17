@@ -37,6 +37,6 @@ public class ThemeEniIce extends ThemeBase{
 		MetaBlock quartzPillar = Quartz.getPillar(Cardinal.UP);
 		
 		this.primary = new BlockSet(floor, ice, stair, quartzPillar);
-		this.secondary =  new BlockSet(floor, ice, stair, quartzPillar);;
-	}
+		this.secondary =  new BlockSet(floor, ice, stair, quartzPillar);
+    }
 }

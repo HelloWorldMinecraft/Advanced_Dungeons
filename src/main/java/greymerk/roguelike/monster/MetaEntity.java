@@ -60,7 +60,7 @@ public class MetaEntity implements IEntity {
 		LivingEntity oldMob = (LivingEntity)this.mob;
 		LivingEntity newMob = (LivingEntity)MobType.getEntity(this.mob.getWorld(), this.mob.getLocation(), type);
 		
-		this.mob = (Entity)newMob;
+		this.mob = newMob;
 		
 		if(newMob instanceof Zombie){
 			((Zombie)newMob).setBaby(((Zombie)oldMob).isBaby());

@@ -205,7 +205,7 @@ public class JsonToNBT
 	{
 		String s = locateName(str, isArray);
 		String s1 = locateValue(str, isArray);
-		return joinStrToNBT(new String[] { s, s1 });
+		return joinStrToNBT(s, s1);
 	}
 
 	private static String nextNameValuePair(String str, boolean isCompound) throws NBTException
@@ -422,7 +422,7 @@ public class JsonToNBT
 	static class Compound extends JsonToNBT.Any
 	{
 
-		protected java.util.List<JsonToNBT.Any> tagList = Lists.<JsonToNBT.Any>newArrayList();
+		protected java.util.List<JsonToNBT.Any> tagList = Lists.newArrayList();
 
 		public Compound(String jsonIn)
 		{
@@ -450,7 +450,7 @@ public class JsonToNBT
 	static class List extends JsonToNBT.Any
 	{
 
-		protected java.util.List<JsonToNBT.Any> tagList = Lists.<JsonToNBT.Any>newArrayList();
+		protected java.util.List<JsonToNBT.Any> tagList = Lists.newArrayList();
 
 		public List(String json)
 		{

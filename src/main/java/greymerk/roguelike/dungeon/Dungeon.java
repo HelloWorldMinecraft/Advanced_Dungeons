@@ -100,7 +100,7 @@ public class Dungeon implements IDungeon{
 		
 		Map<String, String> files = new HashMap<>();
 		
-		for(File file : Arrays.asList(settingsFiles)){
+		for(File file : settingsFiles){
 			
 			if(!FilenameUtils.getExtension(file.getName()).equals("json")) continue;
 			

@@ -16,7 +16,7 @@ public class ThemeEthoTower extends ThemeBase{
 		MetaBlock secondaryWall = BlockType.get(BlockType.SANDSTONE_SMOOTH);
 		
 		this.primary = new BlockSet(primaryWall, primaryWall, stair, primaryWall);
-		this.secondary = new BlockSet(secondaryWall, secondaryWall, stair, secondaryWall);;
-	}
+		this.secondary = new BlockSet(secondaryWall, secondaryWall, stair, secondaryWall);
+    }
 
 }

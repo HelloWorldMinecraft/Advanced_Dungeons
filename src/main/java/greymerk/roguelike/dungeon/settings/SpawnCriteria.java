@@ -28,7 +28,7 @@ public class SpawnCriteria {
 	}
         
         private static Biome nameToBiome(String name) {
-            String parts[] = name.split(":");
+            String[] parts = name.split(":");
             Biome biome;
             try {
                 biome = Biome.valueOf(parts[1]);
@@ -58,7 +58,7 @@ public class SpawnCriteria {
 			this.biomeTypes = new ArrayList<BiomeDictionary.Type>();
 			for(JsonElement e : biomeTypeList){
 				String type = e.getAsString().toUpperCase();
-				BiomeDictionary.Type t = BiomeDictionary.Type.getType(type, new BiomeDictionary.Type[0]);
+				BiomeDictionary.Type t = BiomeDictionary.Type.getType(type);
 				if(BiomeDictionary.getBiomes(t).size() > 0) this.biomeTypes.add(t);
 			}
 		}

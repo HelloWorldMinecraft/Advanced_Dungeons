@@ -13,7 +13,7 @@ import org.bukkit.Material;
 
 public class Bed {
     
-        public final static Material BED_LIST[] = {
+        public final static Material[] BED_LIST = {
             Material.WHITE_BED,
             Material.ORANGE_BED,
             Material.MAGENTA_BED,

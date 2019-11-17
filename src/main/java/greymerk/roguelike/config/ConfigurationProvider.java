@@ -211,7 +211,7 @@ public abstract class ConfigurationProvider implements Iterable<Configuration> {
 		
 		String[] arrValues = value.split(",");
 		
-		List<String> values = Arrays.asList(arrValues);
+		String[] values = arrValues;
 		
 		List<Integer> ints = new ArrayList<Integer>();
 		

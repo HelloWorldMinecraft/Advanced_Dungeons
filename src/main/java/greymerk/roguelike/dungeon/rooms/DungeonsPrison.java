@@ -27,7 +27,7 @@ public class DungeonsPrison extends DungeonBase {
 		
 		this.largeRoom(editor, rand, settings, origin);
 	
-		for(Cardinal dir : Arrays.asList(entrances)){
+		for(Cardinal dir : entrances){
 			cursor = new Coord(origin);
 			cursor.add(dir, 6);
 			this.sideRoom(editor, rand, settings, cursor, dir);

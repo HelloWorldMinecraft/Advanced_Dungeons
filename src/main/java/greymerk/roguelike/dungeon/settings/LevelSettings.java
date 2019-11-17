@@ -58,7 +58,7 @@ public class LevelSettings {
 		this.levelDifficulty = toCopy.levelDifficulty;
 		this.rooms = toCopy.rooms != null ? new DungeonFactory(toCopy.rooms) : null;
 		this.secrets = toCopy.secrets != null ? new SecretFactory(toCopy.secrets) : null;
-		this.theme = toCopy.theme != null ? toCopy.theme : null;
+		this.theme = toCopy.theme;
 		this.segments = toCopy.segments != null ? new SegmentGenerator(toCopy.segments) : null;
 		this.spawners = new SpawnerSettings(toCopy.spawners);
 		this.filters = new HashSet<Filter>();
@@ -227,7 +227,6 @@ public class LevelSettings {
 		LevelSettings other = (LevelSettings) o;
 		if(other.generator != this.generator) return false;
 		if(!this.secrets.equals(other.secrets)) return false;
-		if(!this.rooms.equals(other.rooms)) return false;
-		return true;
+		return this.rooms.equals(other.rooms);
 	}
 }

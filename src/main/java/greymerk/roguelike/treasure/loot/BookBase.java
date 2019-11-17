@@ -50,7 +50,7 @@ public class BookBase implements IBook{
 		BookMeta bookMeta = (BookMeta) book.getItemMeta();
                 ComponentBuilder cb = new ComponentBuilder(this.title == null ? "Book" : this.title);
                 bookMeta.spigot().addPage(cb.create());
-                String array_page[] = new String[pages.size()];
+                String[] array_page = new String[pages.size()];
                 for(int i = 0; i < array_page.length; i++) {
                     array_page[i] = pages.get(i);
                 }

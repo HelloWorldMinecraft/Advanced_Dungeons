@@ -67,7 +67,7 @@ public class WeightedRandomLoot implements Comparable<WeightedRandomLoot>, IWeig
 	public WeightedRandomLoot(JsonObject json, int weight) throws Exception{
 	
 		this.name = json.get("name").getAsString();
-                String array[] = name.split(":");
+                String[] array = name.split(":");
                 Material material;
                 try {
                     material = Material.valueOf(array[1].toUpperCase());

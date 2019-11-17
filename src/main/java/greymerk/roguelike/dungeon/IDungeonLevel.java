@@ -9,15 +9,15 @@ import greymerk.roguelike.worldgen.filter.IFilter;
 
 public interface IDungeonLevel {
 
-	public LevelSettings getSettings();
+	LevelSettings getSettings();
 	
 	boolean hasNearbyNode(Coord pos);
 	
-	public ILevelLayout getLayout();
+	ILevelLayout getLayout();
 	
-	public void encase(IWorldEditor editor, Random rand);
+	void encase(IWorldEditor editor, Random rand);
 
-	public void generate(ILevelGenerator generator, Coord start);
+	void generate(ILevelGenerator generator, Coord start);
 
 	void applyFilters(IWorldEditor editor, Random rand);
 	

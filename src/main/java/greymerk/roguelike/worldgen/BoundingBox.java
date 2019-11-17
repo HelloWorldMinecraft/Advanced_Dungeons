@@ -27,13 +27,11 @@ public class BoundingBox implements IBounded{
 			|| otherBox.end.getX() < start.getX()) return false; 
 		
 		if(end.getY() < otherBox.start.getY()
-			|| otherBox.end.getY() < start.getY()) return false; 
-		
-		if(end.getZ() < otherBox.start.getZ()
-			|| otherBox.end.getZ() < start.getZ()) return false; 
-		
-		return true;
-	}
+			|| otherBox.end.getY() < start.getY()) return false;
+
+        return end.getZ() >= otherBox.start.getZ()
+                && otherBox.end.getZ() >= start.getZ();
+    }
 
 	@Override
 	public IShape getShape(Shape type) {

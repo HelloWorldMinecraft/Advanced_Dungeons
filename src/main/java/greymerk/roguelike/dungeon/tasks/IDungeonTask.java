@@ -8,6 +8,6 @@ import greymerk.roguelike.worldgen.IWorldEditor;
 
 public interface IDungeonTask {
 
-	public boolean execute(IWorldEditor editor, Random rand, IDungeon dungeon, ISettings settings, int index);
+	boolean execute(IWorldEditor editor, Random rand, IDungeon dungeon, ISettings settings, int index);
 	
 }

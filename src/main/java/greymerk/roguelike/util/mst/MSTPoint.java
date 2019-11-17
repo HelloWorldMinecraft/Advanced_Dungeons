@@ -46,9 +46,9 @@ public class MSTPoint {
 	}
 	
 	public void scaleBy(double multiplier){
-		double x = (double)this.position.getX();
-		double y = (double)this.position.getY();
-		double z = (double)this.position.getZ();
+		double x = this.position.getX();
+		double y = this.position.getY();
+		double z = this.position.getZ();
 		
 		x *= multiplier;
 		z *= multiplier;
