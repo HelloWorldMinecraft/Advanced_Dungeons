@@ -11,6 +11,6 @@ public class EncaseFilter implements IFilter {
 
     @Override
     public void apply(IWorldEditor editor, Random rand, ITheme theme, IBounded box) {
-        box.getShape(Shape.RECTSOLID).fill(editor, rand, theme.getPrimary().getWall());
+        box.getShape(Shape.RECTHOLLOW).fill(editor, rand, theme.getPrimary().getWall());
     }
 }

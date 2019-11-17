@@ -21,7 +21,7 @@ public enum Quality {
         weaponQuality = new HashMap<Integer, IWeighted<Quality>>();
         toolQuality = new HashMap<Integer, IWeighted<Quality>>();
 
-        for (int i = 0; i < 5; ++i) {
+        for (int i = 0; i < 8; ++i) {
             WeightedRandomizer<Quality> armour = new WeightedRandomizer<Quality>();
             switch (i) {
                 case 0:
@@ -58,6 +58,21 @@ public enum Quality {
                     armour.add(new WeightedChoice<Quality>(IRON, 10));
                     armour.add(new WeightedChoice<Quality>(GOLD, 3));
                     armour.add(new WeightedChoice<Quality>(DIAMOND, 3));
+                    break;
+                case 5:
+                    armour.add(new WeightedChoice<Quality>(STONE, 1));
+                    armour.add(new WeightedChoice<Quality>(IRON, 5));
+                    armour.add(new WeightedChoice<Quality>(GOLD, 3));
+                    armour.add(new WeightedChoice<Quality>(DIAMOND, 5));
+                    break;
+                case 6:
+                    armour.add(new WeightedChoice<Quality>(IRON, 3));
+                    armour.add(new WeightedChoice<Quality>(GOLD, 1));
+                    armour.add(new WeightedChoice<Quality>(DIAMOND, 5));
+                    break;
+                case 7:
+                    armour.add(new WeightedChoice<Quality>(GOLD, 2));
+                    armour.add(new WeightedChoice<Quality>(DIAMOND, 5));
                     break;
             }
             armourQuality.put(i, armour);
@@ -139,6 +154,22 @@ public enum Quality {
                     tool.add(new WeightedChoice<Quality>(GOLD, 3));
                     tool.add(new WeightedChoice<Quality>(DIAMOND, 5));
                     break;
+                case 5:
+                    tool.add(new WeightedChoice<Quality>(STONE, 1));
+                    tool.add(new WeightedChoice<Quality>(IRON, 5));
+                    tool.add(new WeightedChoice<Quality>(GOLD, 3));
+                    tool.add(new WeightedChoice<Quality>(DIAMOND, 3));
+                    break;
+                case 6:
+                    tool.add(new WeightedChoice<Quality>(IRON, 3));
+                    tool.add(new WeightedChoice<Quality>(GOLD, 1));
+                    tool.add(new WeightedChoice<Quality>(DIAMOND, 5));
+                    break;
+                case 7:
+                    tool.add(new WeightedChoice<Quality>(IRON, 2));
+                    tool.add(new WeightedChoice<Quality>(GOLD, 1));
+                    tool.add(new WeightedChoice<Quality>(DIAMOND, 5));
+                    break;
             }
             toolQuality.put(i, tool);
         }
@@ -175,6 +206,9 @@ public enum Quality {
             case 3:
                 return Quality.GOLD;
             case 4:
+            case 5:
+            case 6:
+            case 7:
                 return Quality.DIAMOND;
             default:
                 return Quality.WOOD;
