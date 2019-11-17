@@ -19,7 +19,7 @@ import java.util.List;
 
 public class SettingsNetherTheme extends DungeonSettings {
 
-    public static final SettingIdentifier ID = new SettingIdentifier(SettingsContainer.BUILTIN_NAMESPACE, "jungle");
+    public static final SettingIdentifier ID = new SettingIdentifier(SettingsContainer.BUILTIN_NAMESPACE, "nether");
 
     public SettingsNetherTheme() {
 
@@ -58,7 +58,7 @@ public class SettingsNetherTheme extends DungeonSettings {
                 segments.add(Segment.CHEST, 1);
                 segments.add(Segment.SPAWNER, 2);
                 level.setSegments(segments);
-                level.addFilter(Filter.COBWEB);
+                level.addFilter(Filter.ENCASE);
             }
 
             level.setTheme(Theme.getTheme(themes[i]));

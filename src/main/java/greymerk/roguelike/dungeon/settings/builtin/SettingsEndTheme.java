@@ -19,7 +19,7 @@ import java.util.List;
 
 public class SettingsEndTheme extends DungeonSettings {
 
-    public static final SettingIdentifier ID = new SettingIdentifier(SettingsContainer.BUILTIN_NAMESPACE, "jungle");
+    public static final SettingIdentifier ID = new SettingIdentifier(SettingsContainer.BUILTIN_NAMESPACE, "end");
 
     public SettingsEndTheme() {
 

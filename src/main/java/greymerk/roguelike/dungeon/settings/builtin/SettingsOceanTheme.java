@@ -22,7 +22,7 @@ import java.util.List;
 
 public class SettingsOceanTheme extends DungeonSettings {
 
-    public static final SettingIdentifier ID = new SettingIdentifier(SettingsContainer.BUILTIN_NAMESPACE, "desert");
+    public static final SettingIdentifier ID = new SettingIdentifier(SettingsContainer.BUILTIN_NAMESPACE, "ocean");
 
     public SettingsOceanTheme() {
 
