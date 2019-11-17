@@ -41,13 +41,13 @@ public class SettingsContainer implements ISettingsContainer {
         this.put(new SettingsBase());
 
         this.put(new SettingsDesertTheme());
-        this.put(new SettingsGrasslandTheme());
-        this.put(new SettingsJungleTheme());
-        this.put(new SettingsSwampTheme());
-        this.put(new SettingsMountainTheme());
         this.put(new SettingsForestTheme());
-        this.put(new SettingsMesaTheme());
+        this.put(new SettingsGrasslandTheme());
         this.put(new SettingsIceTheme());
+        this.put(new SettingsJungleTheme());
+        this.put(new SettingsMesaTheme());
+        this.put(new SettingsMountainTheme());
+        this.put(new SettingsSwampTheme());
 
         doLootRuleOverride();
     }
