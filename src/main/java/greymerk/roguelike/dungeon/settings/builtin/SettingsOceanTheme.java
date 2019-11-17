@@ -20,11 +20,11 @@ import java.util.List;
 //import net.minecraft.init.Items;
 //import net.minecraftforge.common.BiomeDictionary;
 
-public class SettingsDesertTheme extends DungeonSettings {
+public class SettingsOceanTheme extends DungeonSettings {
 
     public static final SettingIdentifier ID = new SettingIdentifier(SettingsContainer.BUILTIN_NAMESPACE, "desert");
 
-    public SettingsDesertTheme() {
+    public SettingsOceanTheme() {
 
         this.id = ID;
 
@@ -32,17 +32,17 @@ public class SettingsDesertTheme extends DungeonSettings {
 
         this.criteria = new SpawnCriteria();
         List<BiomeDictionary.Type> biomes = new ArrayList<>();
-        biomes.add(BiomeDictionary.Type.SANDY);
+        biomes.add(BiomeDictionary.Type.OCEAN);
         this.criteria.setBiomeTypes(biomes);
 
-        this.towerSettings = new TowerSettings(Tower.PYRAMID, Theme.getTheme(Theme.PYRAMID));
+        this.towerSettings = new TowerSettings(Tower.BUNKER, Theme.getTheme(Theme.BLUEGLASS));
 
         this.lootRules = new LootRuleManager();
         for (int i = 0; i < 5; ++i) {
-            this.lootRules.add(null, new WeightedRandomLoot(Material.GOLD_INGOT, 0, 1, 1 + i, 1), i, false, 6);
+            this.lootRules.add(null, new WeightedRandomLoot(Material.PRISMARINE_CRYSTALS, 0, 1, 1 + i, 1), i, false, 6);
         }
 
-        Theme[] themes = {Theme.PYRAMID, Theme.SANDSTONE, Theme.SANDSTONERED, Theme.ENDER, Theme.NETHER};
+        Theme[] themes = {Theme.BLUEGLASS, Theme.BLUEGLASS, Theme.PRISMARINE, Theme.PRISMARINE, Theme.NETHER};
 
         for (int i = 0; i < 5; ++i) {
 
@@ -50,7 +50,7 @@ public class SettingsDesertTheme extends DungeonSettings {
             level.setTheme(Theme.getTheme(themes[i]));
 
             if (i == 0) {
-                level.setDifficulty(1);
+                level.setDifficulty(2);
                 SegmentGenerator segments = new SegmentGenerator(Segment.SQUAREARCH);
                 segments.add(Segment.WALL, 10);
                 segments.add(Segment.ANKH, 5);
@@ -79,9 +79,9 @@ public class SettingsDesertTheme extends DungeonSettings {
                 segments.add(Segment.INSET, 5);
                 segments.add(Segment.SHELF, 5);
                 segments.add(Segment.CHEST, 1);
-                segments.add(Segment.ANKH, 1);
-                segments.add(Segment.SKULL, 2);
-                segments.add(Segment.TOMB, 1);
+                segments.add(Segment.SEWER, 1);
+                segments.add(Segment.SEWERARCH, 2);
+                segments.add(Segment.SEWERDOOR, 1);
                 level.setSegments(segments);
 
                 DungeonFactory factory = new DungeonFactory();
@@ -101,8 +101,8 @@ public class SettingsDesertTheme extends DungeonSettings {
                 segments.add(Segment.INSET, 5);
                 segments.add(Segment.SHELF, 5);
                 segments.add(Segment.CHEST, 1);
-                segments.add(Segment.SKULL, 2);
-                segments.add(Segment.TOMB, 1);
+                segments.add(Segment.SEWER, 1);
+                segments.add(Segment.SEWERDOOR, 1);
                 level.setSegments(segments);
 
                 DungeonFactory factory = new DungeonFactory();
@@ -119,7 +119,7 @@ public class SettingsDesertTheme extends DungeonSettings {
             }
 
             if (i == 3) {
-                level.setDifficulty(3);
+                level.setDifficulty(2);
                 SegmentGenerator segments = new SegmentGenerator(Segment.SQUAREARCH);
                 segments.add(Segment.SPAWNER, 1);
                 segments.add(Segment.WALL, 10);

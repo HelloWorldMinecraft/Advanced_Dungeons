@@ -9,7 +9,8 @@ public enum Theme {
     OAK, SPRUCE, CRYPT, MOSSY, MUDDY, NETHER, SANDSTONE, QUARTZ, BLING, CHECKER,
     RAINBOW, SNOW, JUNGLE, BRICK, DARKOAK, ICE, ENIKO, ENIKO2, ENIQUARTZ, ENIICE, TOWER,
     ETHO, CAVE, SEWER, ENDER, MINESHAFT, ETHOTOWER, PYRAMID, DARKHALL, TEMPLE, SANDSTONERED,
-    HOUSE, GREY, PURPUR, HELL, TERRACOTTA, STONE, BUMBO;
+    HOUSE, GREY, PURPUR, HELL, TERRACOTTA, STONE, BUMBO, BLUEGLASS, PRISMARINE;
+
 
     public static ITheme getTheme(Theme type) {
 
@@ -129,6 +130,12 @@ public enum Theme {
                 break;
             case BUMBO:
                 theme = new ThemeBumbo();
+                break;
+            case BLUEGLASS:
+                theme = new ThemeBlueGlass();
+                break;
+            case PRISMARINE:
+                theme = new ThemePrismarine();
                 break;
             default:
                 return null;
