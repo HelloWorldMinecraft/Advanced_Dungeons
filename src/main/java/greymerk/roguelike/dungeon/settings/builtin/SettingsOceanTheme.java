@@ -12,6 +12,7 @@ import greymerk.roguelike.dungeon.towers.Tower;
 import greymerk.roguelike.theme.Theme;
 import greymerk.roguelike.treasure.loot.LootRuleManager;
 import greymerk.roguelike.treasure.loot.WeightedRandomLoot;
+import greymerk.roguelike.worldgen.filter.Filter;
 import org.bukkit.Material;
 import zhehe.advanceddungeons.util.BiomeDictionary;
 
@@ -141,6 +142,7 @@ public class SettingsOceanTheme extends DungeonSettings {
 
                 level.setGenerator(LevelGenerator.CLASSIC);
             }
+            level.addFilter(Filter.ENCASE);
 
             levels.put(i, level);
         }
