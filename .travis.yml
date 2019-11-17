@@ -11,6 +11,13 @@ install:
   - source "/home/travis/.sdkman/bin/sdkman-init.sh"
   - sdk install gradle 5.5
 
+  # BuildTools for NMS
+  - mkdir BuildTools
+  - cd BuildTools
+  - curl -O https://hub.spigotmc.org/jenkins/job/BuildTools/lastSuccessfulBuild/artifact/target/BuildTools.jar
+  - java -jar BuildTools.jar --rev latest
+  - cd ..
+
 #Our projects don't have a gradle wrapper
 script: gradle build -Prelease
 
