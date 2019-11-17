@@ -45,21 +45,25 @@ public class SettingsNetherTheme extends DungeonSettings {
         SegmentGenerator segments;
         for (int i = 0; i < 5; ++i) {
             LevelSettings level = new LevelSettings();
-            if (i < 4) {
-                level.setDifficulty(4);
-                segments = new SegmentGenerator(Segment.MOSSYARCH);
-                segments.add(Segment.SHELF, 2);
-                segments.add(Segment.INSET, 2);
-                segments.add(Segment.NETHERARCH, 5);
-                segments.add(Segment.SKULL, 1);
-                segments.add(Segment.NETHERWART, 1);
-                segments.add(Segment.NETHERSTRIPE, 1);
-                segments.add(Segment.NETHERLAVA, 1);
-                segments.add(Segment.CHEST, 1);
-                segments.add(Segment.SPAWNER, 2);
-                level.setSegments(segments);
-                level.addFilter(Filter.ENCASE);
-            }
+
+            if (i == 0) level.setDifficulty(4);
+            else if (i < 2) level.setDifficulty(5);
+            else if (i == 4) level.setDifficulty(6);
+
+            segments = new SegmentGenerator(Segment.MOSSYARCH);
+            segments.add(Segment.SHELF, 2);
+            segments.add(Segment.INSET, 2);
+            segments.add(Segment.NETHERARCH, 5);
+            segments.add(Segment.SKULL, 1);
+            segments.add(Segment.NETHERWART, 1);
+            segments.add(Segment.NETHERSTRIPE, 1);
+            segments.add(Segment.NETHERLAVA, 1);
+            segments.add(Segment.CHEST, 1);
+            segments.add(Segment.SPAWNER, 2);
+
+            level.setSegments(segments);
+            level.addFilter(Filter.ENCASE);
+
 
             level.setTheme(Theme.getTheme(themes[i]));
             levels.put(i, level);
