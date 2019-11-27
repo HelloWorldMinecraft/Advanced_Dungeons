@@ -58,7 +58,7 @@ public class SettingsEndTheme extends DungeonSettings {
             segments.add(Segment.SPAWNER, 2);
 
             level.setSegments(segments);
-            level.addFilter(Filter.ENCASE);
+            //level.addFilter(Filter.ENCASE);
 
 
             level.setTheme(Theme.getTheme(themes[i]));

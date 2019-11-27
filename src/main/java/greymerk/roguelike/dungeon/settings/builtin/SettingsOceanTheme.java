@@ -142,7 +142,7 @@ public class SettingsOceanTheme extends DungeonSettings {
 
                 level.setGenerator(LevelGenerator.CLASSIC);
             }
-            level.addFilter(Filter.ENCASE);
+            //level.addFilter(Filter.ENCASE);
 
             levels.put(i, level);
         }
