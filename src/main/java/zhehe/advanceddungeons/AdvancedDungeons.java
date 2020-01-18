@@ -100,7 +100,6 @@ public class AdvancedDungeons extends JavaPlugin {
     @Override
     public boolean onCommand(final CommandSender sender, final Command command, final String label, final String[] args) {
         if (command.getName().equalsIgnoreCase("advanceddungeons")) {
-
             switch (args.length) {
                 default:  // /advanceddungeons help
                     sender.sendMessage("Advanced Dungeons Help");

@@ -3,7 +3,7 @@ package zhehe.advanceddungeons.util.nbt;
 import com.google.common.base.Splitter;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
-import net.minecraft.server.v1_14_R1.*;
+import net.minecraft.server.v1_15_R1.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -23,7 +23,7 @@ public class JsonToNBT {
         jsonString = jsonString.trim();
 
         if (!jsonString.startsWith("{")) {
-            throw new NBTException("Invalid tag encountered, expected \'{\' as first char.");
+            throw new NBTException("Invalid tag encountered, expected '{' as first char.");
         } else if (topTagsCount(jsonString) != 1) {
             throw new NBTException("Encountered multiple top tags, only one expected");
         } else {
@@ -108,7 +108,7 @@ public class JsonToNBT {
                 char c1 = value.charAt(s1.length());
 
                 if (c1 != 44 && c1 != 123 && c1 != 125 && c1 != 91 && c1 != 93) {
-                    throw new NBTException("Unexpected token \'" + c1 + "\' at: " + value.substring(s1.length()));
+                    throw new NBTException("Unexpected token '" + c1 + "' at: " + value.substring(s1.length()));
                 }
             }
 
@@ -133,7 +133,7 @@ public class JsonToNBT {
                 char c0 = value.charAt(s.length());
 
                 if (c0 != 44 && c0 != 123 && c0 != 125 && c0 != 91 && c0 != 93) {
-                    throw new NBTException("Unexpected token \'" + c0 + "\' at: " + value.substring(s.length()));
+                    throw new NBTException("Unexpected token '" + c0 + "' at: " + value.substring(s.length()));
                 }
             }
 
@@ -393,39 +393,39 @@ public class JsonToNBT {
         public NBTBase parse() throws NBTException {
             try {
                 if (DOUBLE.matcher(this.jsonValue).matches()) {
-                    return new NBTTagDouble(Double.parseDouble(this.jsonValue.substring(0, this.jsonValue.length() - 1)));
+                    return NBTTagDouble.a(Double.parseDouble(this.jsonValue.substring(0, this.jsonValue.length() - 1)));
                 }
 
                 if (FLOAT.matcher(this.jsonValue).matches()) {
-                    return new NBTTagFloat(Float.parseFloat(this.jsonValue.substring(0, this.jsonValue.length() - 1)));
+                    return NBTTagFloat.a(Float.parseFloat(this.jsonValue.substring(0, this.jsonValue.length() - 1)));
                 }
 
                 if (BYTE.matcher(this.jsonValue).matches()) {
-                    return new NBTTagByte(Byte.parseByte(this.jsonValue.substring(0, this.jsonValue.length() - 1)));
+                    return NBTTagByte.a(Byte.parseByte(this.jsonValue.substring(0, this.jsonValue.length() - 1)));
                 }
 
                 if (LONG.matcher(this.jsonValue).matches()) {
-                    return new NBTTagLong(Long.parseLong(this.jsonValue.substring(0, this.jsonValue.length() - 1)));
+                    return NBTTagLong.a(Long.parseLong(this.jsonValue.substring(0, this.jsonValue.length() - 1)));
                 }
 
                 if (SHORT.matcher(this.jsonValue).matches()) {
-                    return new NBTTagShort(Short.parseShort(this.jsonValue.substring(0, this.jsonValue.length() - 1)));
+                    return NBTTagShort.a(Short.parseShort(this.jsonValue.substring(0, this.jsonValue.length() - 1)));
                 }
 
                 if (INTEGER.matcher(this.jsonValue).matches()) {
-                    return new NBTTagInt(Integer.parseInt(this.jsonValue));
+                    return NBTTagInt.a(Integer.parseInt(this.jsonValue));
                 }
 
                 if (DOUBLE_UNTYPED.matcher(this.jsonValue).matches()) {
-                    return new NBTTagDouble(Double.parseDouble(this.jsonValue));
+                    return NBTTagDouble.a(Double.parseDouble(this.jsonValue));
                 }
 
                 if ("true".equalsIgnoreCase(this.jsonValue) || "false".equalsIgnoreCase(this.jsonValue)) {
-                    return new NBTTagByte((byte) (Boolean.parseBoolean(this.jsonValue) ? 1 : 0));
+                    return NBTTagByte.a((byte) (Boolean.parseBoolean(this.jsonValue) ? 1 : 0));
                 }
             } catch (NumberFormatException var6) {
                 this.jsonValue = this.jsonValue.replaceAll("\\\\\"", "\"");
-                return new NBTTagString(this.jsonValue);
+                return NBTTagString.a(this.jsonValue);
             }
 
             if (this.jsonValue.startsWith("[") && this.jsonValue.endsWith("]")) {
@@ -441,7 +441,7 @@ public class JsonToNBT {
 
                     return new NBTTagIntArray(aint);
                 } catch (NumberFormatException var5) {
-                    return new NBTTagString(this.jsonValue);
+                    return NBTTagString.a(this.jsonValue);
                 }
             } else {
                 if (this.jsonValue.startsWith("\"") && this.jsonValue.endsWith("\"")) {
@@ -460,7 +460,7 @@ public class JsonToNBT {
                     }
                 }
 
-                return new NBTTagString(stringbuilder.toString());
+                return NBTTagString.a(stringbuilder.toString());
             }
         }
     }

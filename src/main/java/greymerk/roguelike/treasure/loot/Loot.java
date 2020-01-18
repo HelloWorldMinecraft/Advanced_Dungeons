@@ -13,10 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-//import net.minecraft.server.v1_14_R1.NBTTagCompound;
-//import net.minecraft.server.v1_14_R1.NBTTagList;
-//import net.minecraft.server.v1_14_R1.NBTTagString;
-//import org.bukkit.craftbukkit.v1_14_R1.inventory.CraftItemStack;
+//import net.minecraft.server.v1_15_R1.NBTTagCompound;
+//import net.minecraft.server.v1_15_R1.NBTTagList;
+//import net.minecraft.server.v1_15_R1.NBTTagString;
+//import org.bukkit.craftbukkit.v1_15_R1.inventory.CraftItemStack;
 //import net.minecraft.init.Items;
 //import net.minecraft.inventory.EntityEquipmentSlot;
 //import net.minecraft.item.ItemStack;
@@ -130,7 +130,7 @@ public enum Loot {
         im.setLore(lore);
         item.setItemMeta(im);
 
-//                net.minecraft.server.v1_14_R1.ItemStack nms_item = CraftItemStack.asNMSCopy(item);
+//                net.minecraft.server.v1_15_R1.ItemStack nms_item = CraftItemStack.asNMSCopy(item);
 //		NBTTagCompound tag = nms_item.getTag();
 //		
 //		if (tag == null){

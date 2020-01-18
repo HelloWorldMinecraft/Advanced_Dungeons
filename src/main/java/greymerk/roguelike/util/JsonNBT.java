@@ -3,7 +3,7 @@ package greymerk.roguelike.util;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import net.minecraft.server.v1_14_R1.*;
+import net.minecraft.server.v1_15_R1.*;
 
 import java.util.Map;
 
@@ -81,41 +81,41 @@ public enum JsonNBT {
 
 	public static void append(NBTTagList nbt, JsonNBT type, JsonElement data) {
 		switch (type) {
-			case END:
-				return;
-			case BYTE:
-				nbt.add(new NBTTagByte(data.getAsByte()));
-				return;
-			case SHORT:
-				nbt.add(new NBTTagShort(data.getAsShort()));
-				return;
-			case INT:
-				nbt.add(new NBTTagInt(data.getAsInt()));
-				return;
-			case LONG:
-				nbt.add(new NBTTagLong(data.getAsLong()));
-				return;
-			case FLOAT:
-				nbt.add(new NBTTagFloat(data.getAsFloat()));
-				return;
-			case DOUBLE:
-				nbt.add(new NBTTagDouble(data.getAsDouble()));
-				return;
-			case BYTEARRAY:
-				nbt.add(new NBTTagByteArray(jsonToByteArray(data.getAsJsonObject())));
-				return;
-			case STRING:
-				nbt.add(new NBTTagString(data.getAsString()));
-				return;
-			case LIST:
-				nbt.add(jsonToList(data.getAsJsonObject()));
-				return;
-			case COMPOUND:
-				nbt.add(jsonToCompound(data.getAsJsonObject()));
-				return;
-			case INTARRAY:
-				nbt.add(new NBTTagIntArray(jsonToIntArray(data.getAsJsonObject())));
-				return;
+            case END:
+                return;
+            case BYTE:
+                nbt.add(NBTTagByte.a(data.getAsByte()));
+                return;
+            case SHORT:
+                nbt.add(NBTTagShort.a(data.getAsShort()));
+                return;
+            case INT:
+                nbt.add(NBTTagInt.a(data.getAsInt()));
+                return;
+            case LONG:
+                nbt.add(NBTTagLong.a(data.getAsLong()));
+                return;
+            case FLOAT:
+                nbt.add(NBTTagFloat.a(data.getAsFloat()));
+                return;
+            case DOUBLE:
+                nbt.add(NBTTagDouble.a(data.getAsDouble()));
+                return;
+            case BYTEARRAY:
+                nbt.add(new NBTTagByteArray(jsonToByteArray(data.getAsJsonObject())));
+                return;
+            case STRING:
+                nbt.add(NBTTagString.a(data.getAsString()));
+                return;
+            case LIST:
+                nbt.add(jsonToList(data.getAsJsonObject()));
+                return;
+            case COMPOUND:
+                nbt.add(jsonToCompound(data.getAsJsonObject()));
+                return;
+            case INTARRAY:
+                nbt.add(new NBTTagIntArray(jsonToIntArray(data.getAsJsonObject())));
+                return;
 		}
 	}
 
