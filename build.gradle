@@ -9,4 +9,5 @@ repositories {
 
 dependencies {
     compile "org.spigotmc:spigot:+"
+    shadow 'commons-io:commons-io:+'
 }

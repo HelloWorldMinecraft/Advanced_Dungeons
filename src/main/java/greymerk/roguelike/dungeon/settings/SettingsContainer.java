@@ -7,8 +7,8 @@ import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 import greymerk.roguelike.dungeon.settings.base.*;
 import greymerk.roguelike.dungeon.settings.builtin.*;
+import org.apache.commons.io.FileUtils;
 import org.bukkit.Bukkit;
-import org.bukkit.craftbukkit.libs.org.apache.commons.io.FileUtils;
 import zhehe.advanceddungeons.AdvancedDungeons;
 
 import java.io.File;
