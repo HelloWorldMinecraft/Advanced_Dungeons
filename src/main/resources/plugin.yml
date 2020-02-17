@@ -1,8 +1,8 @@
-name: AdvancedDungeons
-authors: [zhehe]
+name: ${project.name}
+authors: [zhehe, Username4723]
 main: zhehe.advanceddungeons.AdvancedDungeons
-load: startup
-api-version: 1.14
+load: STARTUP
+api-version: ${project.apiversion}
 version: ${project.version}
 commands:
   advanceddungeons:
