@@ -1,11 +1,11 @@
 package greymerk.roguelike.treasure.loot;
 
 import greymerk.roguelike.util.DyeColor;
-import net.minecraft.server.v1_15_R1.NBTTagCompound;
-import net.minecraft.server.v1_15_R1.NBTTagIntArray;
-import net.minecraft.server.v1_15_R1.NBTTagList;
+import net.minecraft.server.v1_16_R3.NBTTagCompound;
+import net.minecraft.server.v1_16_R3.NBTTagIntArray;
+import net.minecraft.server.v1_16_R3.NBTTagList;
 import org.bukkit.Material;
-import org.bukkit.craftbukkit.v1_15_R1.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_16_R3.inventory.CraftItemStack;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.Random;
@@ -41,7 +41,7 @@ public class Firework {
         fireworks.set("Explosions", explosion);
         tag.set("Fireworks", fireworks);
 
-        net.minecraft.server.v1_15_R1.ItemStack tmp = CraftItemStack.asNMSCopy(rocket);
+        net.minecraft.server.v1_16_R3.ItemStack tmp = CraftItemStack.asNMSCopy(rocket);
         tmp.setTag(tag);
         rocket = CraftItemStack.asBukkitCopy(tmp);
 

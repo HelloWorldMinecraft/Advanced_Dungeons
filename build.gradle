@@ -3,6 +3,17 @@ plugins {
     id 'kr.entree.spigradle' version '2.1.1'
 }
 
+repositories {
+    mavenLocal()
+}
+
 dependencies {
-    compileOnly spigot("1.16.4")
+    compileOnly spigotAll("1.16.4")
+    compile "commons-io:commons-io:+"
+}
+
+spigot {
+    authors "zhehe", "Red3842"
+    apiVersion "1.16.4"
+    load STARTUP
 }

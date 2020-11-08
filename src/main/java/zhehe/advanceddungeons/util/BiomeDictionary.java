@@ -92,7 +92,9 @@ public class BiomeDictionary {
         addTypes(Biome.TAIGA, COLD, CONIFEROUS, FOREST);
         addTypes(Biome.SWAMP, WET, SWAMP);
         addTypes(Biome.RIVER, RIVER);
-        addTypes(Biome.NETHER, HOT, DRY, NETHER);
+        addTypes(Biome.NETHER_WASTES, HOT, DRY, NETHER);
+        addTypes(Biome.SOUL_SAND_VALLEY, HOT, DRY, NETHER);
+        addTypes(Biome.CRIMSON_FOREST, HOT, DRY, NETHER);
         addTypes(Biome.THE_END, COLD, DRY, END);
         addTypes(Biome.SMALL_END_ISLANDS, COLD, DRY, END);
         addTypes(Biome.END_MIDLANDS, COLD, DRY, END);

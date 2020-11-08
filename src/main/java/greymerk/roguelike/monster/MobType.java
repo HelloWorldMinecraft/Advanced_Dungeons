@@ -44,7 +44,7 @@ public enum MobType {
             case WITHERSKELETON:
                 return world.spawnEntity(loc, EntityType.WITHER_SKELETON);
             case PIGZOMBIE:
-                return world.spawnEntity(loc, EntityType.PIG_ZOMBIE);
+                return world.spawnEntity(loc, EntityType.ZOMBIFIED_PIGLIN);
             case EVOKER:
                 return world.spawnEntity(loc, EntityType.EVOKER);
             case VINDICATOR:

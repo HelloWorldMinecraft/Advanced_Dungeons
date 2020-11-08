@@ -5,9 +5,9 @@ import greymerk.roguelike.treasure.loot.Enchant;
 import greymerk.roguelike.treasure.loot.Equipment;
 import greymerk.roguelike.treasure.loot.Quality;
 import greymerk.roguelike.treasure.loot.Slot;
-import net.minecraft.server.v1_15_R1.NBTTagCompound;
+import net.minecraft.server.v1_16_R3.NBTTagCompound;
 import org.bukkit.Material;
-import org.bukkit.craftbukkit.v1_15_R1.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_16_R3.inventory.CraftItemStack;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.Random;
@@ -169,7 +169,7 @@ public class ItemArmour extends ItemBase {
     public static ItemStack dyeArmor(ItemStack armor, int r, int g, int b) {
 
         int color = r << 16 | g << 8 | b << 0;
-        net.minecraft.server.v1_15_R1.ItemStack ca = CraftItemStack.asNMSCopy(armor);
+        net.minecraft.server.v1_16_R3.ItemStack ca = CraftItemStack.asNMSCopy(armor);
         NBTTagCompound nbtdata = ca.getTag();
 
         if (nbtdata == null) {
